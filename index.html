@@ -610,7 +610,7 @@ html.sheet-lock{overflow:hidden}
 .sheet-page{position:relative;min-height:100%;overflow:hidden;padding:calc(34px + env(safe-area-inset-top)) 0 calc(56px + env(safe-area-inset-bottom));background:radial-gradient(90% 38% at 0% 30%,rgba(4,112,252,.40),transparent 70%),radial-gradient(80% 30% at 100% 92%,rgba(12,52,233,.30),transparent 70%),linear-gradient(180deg,#00072c,#00061f 60%,#00041a);transform:translateY(16px);transition:transform .5s var(--ease)}
 .sheet.open .sheet-page{transform:none}
 .sheet-wall{position:absolute;inset:-18% -14%;transform:rotate(-9deg);opacity:.10;pointer-events:none;background-repeat:repeat;background-size:calc(630px*var(--ws,1)) calc(240px*var(--ws,1))}
-@media (max-width:639px){.sheet-wall{--ws:.6}}
+@media (max-width:639px){.sheet-wall{--ws:.6}.sheet-page{padding-top:calc(76px + env(safe-area-inset-top))}}
 .sheet-in{position:relative;z-index:1;width:min(680px,100% - 2 * var(--gutter));margin-inline:auto}
 .sheet-x{position:absolute;z-index:3;top:max(14px,env(safe-area-inset-top));left:max(14px,env(safe-area-inset-left));width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(0,7,44,.72);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--white);transition:background-color .2s ease,border-color .2s ease}
 .sheet-x span{position:relative;width:18px;height:18px}
