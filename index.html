@@ -590,7 +590,16 @@ body.has-pointer .cursor-glow{opacity:1}
 .club-logo::before,.club-logo::after{content:"";position:absolute;inset:0;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
 .club-logo::before{background:var(--white)}
 .club-logo::after{background:var(--lime);-webkit-clip-path:inset(0 66% 0 0);clip-path:inset(0 66% 0 0)}
-.club-logo--sm{width:150px;margin-bottom:8px}
+/* ============ Partner lockup: Jeddah University × AI Club × flyadeal ============ */
+.lockup{--k:min(1.12px,calc((100vw - 36px)/584));display:flex;align-items:center;justify-content:center;gap:calc(var(--k)*22);direction:rtl;max-width:100%}
+.lockup .club-logo{flex:none;width:calc(var(--k)*260);margin:0}
+.lockup img{display:block;flex:none}
+.lockup .lg-uj{height:calc(var(--k)*78);width:auto}
+.lockup .lg-fad{height:calc(var(--k)*44);width:auto}
+.lk-x{position:relative;flex:none;width:calc(var(--k)*16);height:calc(var(--k)*16)}
+.lk-x::before,.lk-x::after{content:"";position:absolute;left:-10%;right:-10%;top:50%;height:max(1.5px,calc(var(--k)*2.5));margin-top:calc(max(1.5px,calc(var(--k)*2.5))/-2);border-radius:2px;background:var(--lime);box-shadow:0 0 10px rgba(205,220,41,.45)}
+.lk-x::before{rotate:45deg}.lk-x::after{rotate:-45deg}
+.lockup--sm{--k:min(.62px,calc((100vw - 36px)/584));margin-bottom:8px}
 .hero-cta{display:flex;flex-direction:column;align-items:center;gap:6px}
 .hero-cta small{font-family:var(--f-head);font-size:13.5px;color:var(--faint)}
 
@@ -717,7 +726,7 @@ body.has-pointer .cursor-glow{opacity:1}
   <!-- ====== Hero ====== -->
   <section class="hero" id="top" aria-label="AI Takes Flight">
     <div class="wrap hero-inner">
-      <div class="club-logo" data-reveal style="--d:0" role="img" aria-label="Artificial Intelligence Club — نادي الذكاء الاصطناعي"></div>
+      <div class="lockup" data-reveal style="--d:0" role="group" aria-label="جامعة جدة × نادي الذكاء الاصطناعي × طيران أديل"><img class="lg-uj" src="assets/logo-uj-white.svg" alt="جامعة جدة" width="184" height="194" decoding="async"><span class="lk-x" aria-hidden="true"></span><div class="club-logo" role="img" aria-label="Artificial Intelligence Club — نادي الذكاء الاصطناعي"></div><span class="lk-x" aria-hidden="true"></span><img class="lg-fad" src="assets/logo-flyadeal-white.svg" alt="طيران أديل" width="400" height="136" decoding="async"></div>
       <p class="partners" data-reveal>
         <span>جامعة جدة<span class="dot"> · </span>نادي الذكاء الاصطناعي</span><span class="sep dot"> · </span><span class="with">بالشراكة مع طيران أديل</span>
       </p>
@@ -1025,7 +1034,7 @@ body.has-pointer .cursor-glow{opacity:1}
 
 <footer class="foot">
   <div class="wrap">
-    <span class="club-logo club-logo--sm" role="img" aria-label="Artificial Intelligence Club — نادي الذكاء الاصطناعي"></span>
+    <div class="lockup lockup--sm" role="group" aria-label="جامعة جدة × نادي الذكاء الاصطناعي × طيران أديل"><img class="lg-uj" src="assets/logo-uj-white.svg" alt="جامعة جدة" width="184" height="194" decoding="async"><span class="lk-x" aria-hidden="true"></span><div class="club-logo" role="img" aria-label="Artificial Intelligence Club — نادي الذكاء الاصطناعي"></div><span class="lk-x" aria-hidden="true"></span><img class="lg-fad" src="assets/logo-flyadeal-white.svg" alt="طيران أديل" width="400" height="136" decoding="async"></div>
     <span class="foot-brand" dir="ltr"><b>AI</b> Takes Flight</span>
     <span class="foot-partners">جامعة جدة · نادي الذكاء الاصطناعي · بالشراكة مع طيران أديل</span>
   </div>
