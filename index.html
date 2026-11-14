@@ -1120,10 +1120,18 @@ const REGISTER_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdub0UgETt-d1AgwK
   } else {
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => {
-        if (en.intersectionRatio >= 0.08) { en.target.classList.add('in'); } else if (en.boundingClientRect.top > innerHeight * 0.9) { en.target.classList.remove('in'); }
+        if (en.intersectionRatio >= 0.08) { en.target.classList.add('in'); } else if (!en.isIntersecting && en.boundingClientRect.top > 0) { en.target.classList.remove('in'); }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: [0, 0.08] });
     revealEls.forEach(el => io.observe(el));
+    /* احتياط: القفز السريع للأعلى لا يمرّ بالعناصر عبر نافذة العرض، فنخفي السفلية عند التمرير */
+    let rvTick = false;
+    const rvSweep = () => {
+      rvTick = false;
+      const edge = innerHeight * 0.94;
+      revealEls.forEach(el => { if (el.classList.contains('in') && el.getBoundingClientRect().top > edge) el.classList.remove('in'); });
+    };
+    addEventListener('scroll', () => { if (!rvTick) { rvTick = true; requestAnimationFrame(rvSweep); } }, { passive: true });
   }
 
   /* ── Nav: scroll spy + sliding pill + progress ── */
