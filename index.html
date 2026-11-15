@@ -653,6 +653,13 @@ html.sheet-lock{overflow:hidden}
 .done-ic{display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:rgba(205,220,41,.14);border:1px solid rgba(205,220,41,.6);color:var(--lime);box-shadow:0 0 40px rgba(205,220,41,.25)}
 .sheet-alt{margin:18px 0 0;text-align:center;font-size:13.5px;color:var(--faint);line-height:1.8}
 .sheet-alt a{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
+.go-list{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:go}
+.go-list li{counter-increment:go;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(0,7,44,.55);border:1px solid rgba(255,255,255,.12);font-family:var(--f-head);font-weight:600;font-size:15px;line-height:1.6}
+.go-list li::before{content:counter(go);flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--ink);font-weight:800;font-size:14px}
+.go-list li small{display:block;color:var(--faint);font-weight:400;font-size:12.5px;line-height:1.6}
+.go-list .gf{margin-inline-start:auto;flex:none;padding:3px 11px;border-radius:999px;border:1px solid rgba(205,220,41,.55);color:var(--lime);font-size:12px;font-weight:700;font-style:normal}
+.sheet-go .btn-reg{justify-self:stretch;text-decoration:none}
+.go-note{margin:0;text-align:center;color:var(--faint);font-size:13.5px;line-height:1.8}
 .file-box{display:grid;gap:8px}
 .file-pick{position:relative;display:flex;align-items:center;gap:12px;min-height:60px;padding:11px 14px;border-radius:14px;border:1.5px dashed rgba(205,220,41,.5);background:rgba(0,7,44,.55);cursor:pointer;transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease}
 .file-pick:hover,.file-pick.drag{border-color:var(--lime);background:rgba(205,220,41,.08)}
@@ -1079,7 +1086,7 @@ html.sheet-lock{overflow:hidden}
             </div>
             <p class="pass-text">يتم التسليم برفع ملفين عبر النموذج التالي: العرض التقديمي والنموذج الأولي.</p>
             <span class="btn-wrap">
-              <a class="btn-submit" href="#form-submit" data-submit>تسليم المشروع<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <a class="btn-submit" href="https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmczPlIlFZgZzPGYq1RWdmAGZ3pcB-aR0Q/viewform" data-submit>تسليم المشروع<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </span>
           </div>
           <div class="pass-stub glass">
@@ -1115,11 +1122,8 @@ html.sheet-lock{overflow:hidden}
 
 <script>
 /* ─────────────── الإعداد ───────────────
-   نموذج Google Forms الذي تصله بيانات التسليم (الفريق والمشروع وروابط الملفات). */
-const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmczPlIlFZgZzPGYq1RWdmAGZ3pcB-aR0Q/formResponse";
-const FORM_ENTRY = { team: "entry.1239252213", members: "entry.363985202", project: "entry.2041601259", track: "entry.210098089", pres: "entry.232379492", proto: "entry.84480330", notes: "entry.652761772" };
-/* رابط استقبال ملفات التسليم (Google Apps Script، يحفظ الملفات في Google Drive) */
-const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx-JZiX3UbjYc4UUCVj5U0MAC7tU840Ylbqwn5TLX6lxcfLgv-kxmYC3BTQtsgrCglz/exec";
+   رابط نموذج Google Forms للتسليم (أسئلة رفع الملفات تتطلب تسجيل الدخول بحساب Google). */
+const SUBMIT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmczPlIlFZgZzPGYq1RWdmAGZ3pcB-aR0Q/viewform";
 
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
@@ -1268,207 +1272,40 @@ const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx-JZiX3UbjYc4UUCVj5
       }
     });
   }
-  /* ── نافذة التسليم داخل الموقع: رفع الملفات إلى Google Drive ── */
-  const TRACKS = ['التنبؤ والتحليل', 'العمليات الأرضية', 'الاستدامة والوقود', 'خدمة العملاء', 'تجربة المسافر'];
-  const MB = 1024 * 1024, CHUNK = 4 * MB, DCHUNK = 8 * MB, MAX_BYTES = 100 * MB;
+  /* ── نافذة التسليم داخل الموقع: تفتح نموذج Google الذي يستقبل الملفات ── */
   const GF = {
     submit: {
       title: 'تسليم مشروع فريقك',
-      lead: 'يُسلَّم المشروع مرة واحدة لكل فريق قبل انتهاء مدة الـ90 دقيقة. ارفع ملف العرض التقديمي والنموذج الأولي.',
-      send: 'تسليم المشروع',
-      done: ['تم استلام مشروع فريقكم', 'بالتوفيق في العرض! تم حفظ ملفاتكم بنجاح.'],
-      f: [
-        { id: 'team', l: 'اسم الفريق', r: 1 },
-        { id: 'members', l: 'أسماء الأعضاء', r: 1, t: 'area', rows: 3, h: 'اكتب اسم كل عضو في سطر مستقل' },
-        { id: 'project', l: 'اسم المشروع', r: 1 },
-        { id: 'track', l: 'المسار المختار', r: 1, t: 'radio', o: TRACKS },
-        { id: 'pres', l: 'العرض التقديمي', r: 1, t: 'file', max: 1, tag: 'العرض التقديمي', h: 'ملف واحد (PDF أو PowerPoint أو غيره) حتى 100 MB' },
-        { id: 'proto', l: 'النموذج الأولي', r: 1, t: 'file', max: 5, tag: 'النموذج الأولي', h: 'ملف أو أكثر (حتى 5 ملفات)، كل ملف حتى 100 MB' },
-        { id: 'notes', l: 'ملاحظات (اختياري)', t: 'area', rows: 4 }
+      lead: 'يُسلَّم المشروع مرة واحدة لكل فريق قبل انتهاء مدة الـ90 دقيقة. جهّز ملف العرض التقديمي والنموذج الأولي، ثم افتح نموذج التسليم.',
+      send: 'فتح نموذج التسليم',
+      note: 'رفع الملفات يتطلب تسجيل الدخول بحساب Google، ويُفتح النموذج في تبويب جديد.',
+      items: [
+        ['اسم الفريق'],
+        ['أسماء الأعضاء', 'اسم كل عضو في سطر'],
+        ['اسم المشروع'],
+        ['المسار المختار', 'التنبؤ والتحليل · العمليات الأرضية · الاستدامة والوقود · خدمة العملاء · تجربة المسافر'],
+        ['العرض التقديمي', '', 'ملف'],
+        ['النموذج الأولي', 'حتى 5 ملفات', 'ملف'],
+        ['ملاحظات', 'اختياري']
       ]
     }
   };
   const sheet = $('#sheet');
   if (sheet) {
-    let busy = false;
     const lockSrc = $('.foot .lockup') || $('.lockup');
-    const fmt = n => n >= MB ? (n / MB).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB';
-    const UP_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg>';
-    const fieldHTML = (f, k, i) => {
-      const id = 'f-' + k + '-' + i, req = f.r ? '<span class="rq" aria-hidden="true">*</span>' : '';
-      let ctl, lab;
-      if (f.t === 'radio') {
-        lab = '<div class="lbl" id="' + id + '-l">' + f.l + req + '</div>';
-        ctl = '<div class="opts" role="radiogroup" aria-labelledby="' + id + '-l">' + f.o.map(o => '<label class="opt"><input type="radio" name="' + id + '" value="' + o + '"><span>' + o + '</span></label>').join('') + '</div>';
-      } else if (f.t === 'file') {
-        lab = '<div class="lbl" id="' + id + '-l">' + f.l + req + '</div>';
-        ctl = '<div class="file-box"><label class="file-pick"><input type="file" id="' + id + '" aria-labelledby="' + id + '-l"' + (f.max > 1 ? ' multiple' : '') + '><span class="fi" aria-hidden="true">' + UP_ICON + '</span><span class="ft"><b>' + (f.max > 1 ? 'اختر الملفات' : 'اختر ملفًا') + '</b><small>أو اسحبه وأفلته هنا</small></span></label><ul class="file-list"></ul></div>';
-      } else {
-        lab = '<label class="lbl" for="' + id + '">' + f.l + req + '</label>';
-        ctl = f.t === 'area'
-          ? '<textarea id="' + id + '" rows="' + (f.rows || 3) + '"></textarea>'
-          : '<input id="' + id + '" type="text">';
-      }
-      return '<div class="fld" data-i="' + i + '">' + lab + (f.h ? '<small>' + f.h + '</small>' : '') + ctl + '<span class="err" role="alert"></span></div>';
-    };
-    const readField = (f, box, st) => f.t === 'radio' ? ((box.querySelector('input:checked') || {}).value || '') : f.t === 'file' ? st[f.id] : box.querySelector('input,textarea').value.trim();
-    const check = (f, v) => {
-      if (f.t === 'file') return f.r && !v.length ? 'اختر ملفًا للرفع' : '';
-      if (!v) return f.r ? (f.t === 'radio' ? 'اختر أحد الخيارات' : 'هذا الحقل مطلوب') : '';
-      return '';
-    };
-    const api = async payload => {
-      const r = await fetch(UPLOAD_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), credentials: 'omit' });
-      const j = await r.json();
-      if (!j || !j.ok) throw new Error((j && j.e) || 'upload failed');
-      return j;
-    };
-    const b64 = blob => new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1]); fr.onerror = () => rej(fr.error); fr.readAsDataURL(blob); });
-    const wait = ms => new Promise(res => setTimeout(res, ms));
-    const sendViaScript = async (file, uri, onBytes) => {
-      let off = 0, id = '';
-      while (off < file.size) {
-        const end = Math.min(off + CHUNK, file.size), d = await b64(file.slice(off, end));
-        let r, tries = 0;
-        for (;;) {
-          try { r = await api({ a: 'chunk', u: uri, s: off, t: file.size, d: d }); break; }
-          catch (err) { if (++tries >= 3) throw err; await wait(1500 * tries); }
-        }
-        onBytes(end - off); off = end;
-        if (r.done) id = r.id;
-      }
-      if (!id) throw new Error('no file id');
-      return id;
-    };
-    const putChunk = (uri, blob, a, t, onLoaded) => new Promise(res => {
-      const x = new XMLHttpRequest();
-      x.open('PUT', uri);
-      x.setRequestHeader('Content-Range', 'bytes ' + a + '-' + (a + blob.size - 1) + '/' + t);
-      x.upload.onprogress = e => onLoaded(e.loaded);
-      x.onload = () => { let id = ''; if (x.status === 200 || x.status === 201) { try { id = JSON.parse(x.responseText).id || ''; } catch (e) {} } res({ st: x.status, id: id }); };
-      x.onerror = x.ontimeout = () => res({ st: 0, id: '' });
-      x.send(blob);
-    });
-    const sendDirect = async (file, uri, onBytes) => {
-      let off = 0, id = '';
-      while (off < file.size) {
-        const end = Math.min(off + DCHUNK, file.size), blob = file.slice(off, end);
-        let r, tries = 0, rep = 0;
-        for (;;) {
-          rep = 0;
-          r = await putChunk(uri, blob, off, file.size, l => { onBytes(l - rep); rep = l; });
-          if (r.st === 308 || ((r.st === 200 || r.st === 201) && r.id)) break;
-          onBytes(-rep);
-          if (r.st === 0 && off === 0 && tries >= 1) { const e = new Error('direct upload blocked'); e.cors = true; throw e; }
-          if (++tries >= 3) throw new Error('chunk failed ' + r.st);
-          await wait(1500 * tries);
-        }
-        if (rep < blob.size) onBytes(blob.size - rep);
-        off = end;
-        if (r.id) id = r.id;
-      }
-      if (!id) throw new Error('no file id');
-      return id;
-    };
-    const sendFile = async (file, uri, direct, onBytes) => {
-      if (direct) { try { return await sendDirect(file, uri, onBytes); } catch (err) { if (!err.cors) throw err; } }
-      return sendViaScript(file, uri, onBytes);
-    };
-    const renderList = (box, arr, onRemove) => {
-      const ul = $('.file-list', box); ul.textContent = '';
-      arr.forEach((file, n) => {
-        const li = document.createElement('li'), a = document.createElement('span'), b = document.createElement('span'), x = document.createElement('button');
-        a.className = 'fn'; a.textContent = file.name; b.className = 'fs'; b.textContent = fmt(file.size);
-        x.type = 'button'; x.className = 'fx'; x.setAttribute('aria-label', 'إزالة الملف'); x.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
-        x.addEventListener('click', () => onRemove(n));
-        li.append(a, b, x); ul.appendChild(li);
-      });
-    };
-    const submitForm = async (k, p) => {
-      const c = GF[k], form = $('form', p), btn = $('button[type=submit]', form), st = p._st, up = $('.up', form);
-      let bad = null; const vals = {};
-      $$('.fld', form).forEach(box => {
-        const f = c.f[+box.dataset.i], v = readField(f, box, st), msg = check(f, v);
-        box.classList.toggle('bad', !!msg);
-        $('.err', box).textContent = msg;
-        if (msg && !bad) bad = box;
-        vals[f.id] = v;
-      });
-      if (bad) {
-        bad.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
-        const first = $('input,textarea', bad);
-        if (first) first.focus({ preventScroll: true });
-        return;
-      }
-      const reset = () => { form.reset(); Object.keys(st).forEach(id => { st[id].length = 0; }); $$('.file-box', form).forEach(b => { $('.file-list', b).textContent = ''; }); form.hidden = true; $('.sheet-alt', p).hidden = true; $('.sheet-done', p).hidden = false; $('.sheet-scroll', sheet).scrollTop = 0; };
-      if ($('.hp', form).value) { reset(); return; }
-      const all = [];
-      c.f.filter(f => f.t === 'file').forEach(f => st[f.id].forEach(file => all.push({ key: f.id, tag: f.tag, file: file })));
-      const total = all.reduce((s, x) => s + x.file.size, 0), bar = $('.bar i', up), msg = $('p', up);
-      let sent = 0;
-      const show = t => { msg.textContent = t; bar.style.width = Math.min(100, Math.round(sent / total * 100)) + '%'; };
-      busy = true; form.classList.add('busy'); btn.disabled = true; up.hidden = false; $('.sheet-alt', p).hidden = true;
-      show('جارٍ تجهيز الرفع…');
-      try {
-        const s = await api({ a: 'start', origin: window.origin, team: vals.team, files: all.map(x => ({ name: x.tag + ' - ' + x.file.name, size: x.file.size, type: x.file.type })) });
-        const ids = { pres: [], proto: [] };
-        for (let n = 0; n < all.length; n++) {
-          show('جارٍ رفع الملف ' + (n + 1) + ' من ' + all.length + '… ' + Math.round(sent / total * 100) + '%');
-          const id = await sendFile(all[n].file, s.sessions[n], s.direct, b => { sent += b; show('جارٍ رفع الملف ' + (n + 1) + ' من ' + all.length + '… ' + Math.round(sent / total * 100) + '%'); });
-          ids[all[n].key].push(id);
-        }
-        show('جارٍ حفظ بيانات التسليم…');
-        const link = fid => 'https://drive.google.com/file/d/' + fid + '/view', fd = new URLSearchParams();
-        fd.set(FORM_ENTRY.team, vals.team); fd.set(FORM_ENTRY.members, vals.members); fd.set(FORM_ENTRY.project, vals.project); fd.set(FORM_ENTRY.track, vals.track);
-        fd.set(FORM_ENTRY.pres, ids.pres.map(link).join('\n')); fd.set(FORM_ENTRY.proto, ids.proto.map(link).join('\n'));
-        if (vals.notes) fd.set(FORM_ENTRY.notes, vals.notes);
-        await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', credentials: 'omit', body: fd });
-        reset();
-      } catch (err) {
-        $('.sheet-alt', p).hidden = false;
-        showToast('تعذّر إتمام التسليم. تحقق من الاتصال وحاول مرة أخرى.');
-      }
-      busy = false; form.classList.remove('busy'); btn.disabled = false; up.hidden = true;
-    };
-    addEventListener('beforeunload', e => { if (busy) { e.preventDefault(); e.returnValue = ''; } });
     Object.keys(GF).forEach(k => {
       const c = GF[k], p = document.createElement('section');
-      p.className = 'panel'; p.dataset.kind = k; p.hidden = true; p._st = {};
-      c.f.filter(f => f.t === 'file').forEach(f => { p._st[f.id] = []; });
+      p.className = 'panel'; p.dataset.kind = k; p.hidden = true;
       p.innerHTML = '<div class="sheet-head"><h2>' + c.title + '</h2><p>' + c.lead + '</p></div>'
-        + '<form class="sheet-form" novalidate>' + c.f.map((f, i) => fieldHTML(f, k, i)).join('')
-        + '<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">'
-        + '<div class="up" hidden role="status" aria-live="polite"><div class="bar"><i></i></div><p></p></div>'
-        + '<button class="btn-reg" type="submit"><span>' + c.send + '</span></button></form>'
-        + '<div class="sheet-done" hidden><span class="done-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><h3>' + c.done[0] + '</h3><p>' + c.done[1] + '</p><button class="btn-reg" type="button" data-close><span>العودة إلى الموقع</span></button></div>'
-        + '<p class="sheet-alt" hidden>تعذّر إتمام التسليم. تحقق من اتصالك بالإنترنت ثم اضغط «تسليم المشروع» مرة أخرى.</p>';
+        + '<div class="sheet-form sheet-go"><ol class="go-list">'
+        + c.items.map(it => '<li><span>' + it[0] + (it[1] ? '<small>' + it[1] + '</small>' : '') + '</span>' + (it[2] ? '<em class="gf">' + it[2] + '</em>' : '') + '</li>').join('')
+        + '</ol><a class="btn-reg" href="' + SUBMIT_URL + '" target="_blank" rel="noopener noreferrer"><span>' + c.send + '</span></a><p class="go-note">' + c.note + '</p></div>';
       if (lockSrc) {
         const lk = lockSrc.cloneNode(true);
         lk.classList.remove('lockup--sm'); lk.removeAttribute('data-reveal');
         p.querySelector('.sheet-head').prepend(lk);
       }
-      const form = $('form', p);
-      c.f.forEach((f, i) => {
-        if (f.t !== 'file') return;
-        const box = $('.fld[data-i="' + i + '"]', form), pick = $('.file-pick', box), inp = $('input[type=file]', box), arr = p._st[f.id];
-        const draw = () => renderList(box, arr, n => { arr.splice(n, 1); draw(); });
-        const add = list => {
-          Array.from(list).forEach(file => {
-            if (!file.size) { showToast('الملف «' + file.name + '» فارغ.'); return; }
-            if (file.size > MAX_BYTES) { showToast('الملف «' + file.name + '» أكبر من 100 MB.'); return; }
-            if (f.max === 1) arr.length = 0;
-            else if (arr.length >= f.max) { showToast('الحد الأقصى ' + f.max + ' ملفات.'); return; }
-            arr.push(file);
-          });
-          box.parentNode.classList.remove('bad'); draw();
-        };
-        inp.addEventListener('change', () => { add(inp.files); inp.value = ''; });
-        ['dragenter', 'dragover'].forEach(ev => pick.addEventListener(ev, e => { e.preventDefault(); pick.classList.add('drag'); }));
-        ['dragleave', 'drop'].forEach(ev => pick.addEventListener(ev, e => { e.preventDefault(); pick.classList.remove('drag'); }));
-        pick.addEventListener('drop', e => { if (e.dataTransfer) add(e.dataTransfer.files); });
-      });
       $('.sheet-in', sheet).appendChild(p);
-      form.addEventListener('submit', e => { e.preventDefault(); submitForm(k, p); });
     });
     /* خلفية جدارية من الشعارات الثلاثة (تُرسم مرة واحدة على canvas) */
     const makeWall = async () => {
@@ -1502,7 +1339,7 @@ const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx-JZiX3UbjYc4UUCVj5
       $$('.panel', sheet).forEach(p => {
         const on = p.dataset.kind === k;
         p.hidden = !on;
-        if (on) { $('form', p).hidden = false; $('.sheet-done', p).hidden = true; $('.sheet-alt', p).hidden = true; }
+       
       });
       sheet.classList.add('open'); sheet.setAttribute('aria-hidden', 'false');
       document.documentElement.classList.add('sheet-lock'); setInert(true);
@@ -1512,7 +1349,6 @@ const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx-JZiX3UbjYc4UUCVj5
     };
     const closeSheet = fromPop => {
       if (!sheet.classList.contains('open')) return;
-      if (busy && !fromPop) { showToast('انتظر حتى يكتمل رفع الملفات.'); return; }
       sheet.classList.remove('open'); sheet.setAttribute('aria-hidden', 'true');
       document.documentElement.classList.remove('sheet-lock'); setInert(false);
       if (pushed) { pushed = false; if (!fromPop) history.back(); }
