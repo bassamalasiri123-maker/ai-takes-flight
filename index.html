@@ -1115,9 +1115,9 @@ html.sheet-lock{overflow:hidden}
 
 <script>
 /* ─────────────── الإعداد ───────────────
-   ضع رابط نموذج Google Forms للتسليم بين علامتي التنصيص.
-   مثال: const SUBMIT_URL = "https://forms.gle/xxxxxxxx";            */
-const SUBMIT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmczPlIlFZgZzPGYq1RWdmAGZ3pcB-aR0Q/viewform"; /* نموذج Google البديل إذا تعذّر الرفع */
+   نموذج Google Forms الذي تصله بيانات التسليم (الفريق والمشروع وروابط الملفات). */
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmczPlIlFZgZzPGYq1RWdmAGZ3pcB-aR0Q/formResponse";
+const FORM_ENTRY = { team: "entry.1239252213", members: "entry.363985202", project: "entry.2041601259", track: "entry.210098089", pres: "entry.232379492", proto: "entry.84480330", notes: "entry.652761772" };
 /* رابط استقبال ملفات التسليم (Google Apps Script، يحفظ الملفات في Google Drive) */
 const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx-JZiX3UbjYc4UUCVj5U0MAC7tU840Ylbqwn5TLX6lxcfLgv-kxmYC3BTQtsgrCglz/exec";
 
@@ -1418,11 +1418,15 @@ const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx-JZiX3UbjYc4UUCVj5
           ids[all[n].key].push(id);
         }
         show('جارٍ حفظ بيانات التسليم…');
-        await api({ a: 'finish', folder: s.folder, team: vals.team, members: vals.members, project: vals.project, track: vals.track, notes: vals.notes, pres: ids.pres, proto: ids.proto });
+        const link = fid => 'https://drive.google.com/file/d/' + fid + '/view', fd = new URLSearchParams();
+        fd.set(FORM_ENTRY.team, vals.team); fd.set(FORM_ENTRY.members, vals.members); fd.set(FORM_ENTRY.project, vals.project); fd.set(FORM_ENTRY.track, vals.track);
+        fd.set(FORM_ENTRY.pres, ids.pres.map(link).join('\n')); fd.set(FORM_ENTRY.proto, ids.proto.map(link).join('\n'));
+        if (vals.notes) fd.set(FORM_ENTRY.notes, vals.notes);
+        await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', credentials: 'omit', body: fd });
         reset();
       } catch (err) {
         $('.sheet-alt', p).hidden = false;
-        showToast('تعذّر رفع الملفات. تحقق من الاتصال وحاول مرة أخرى، أو استخدم نموذج Google البديل أسفل النموذج.');
+        showToast('تعذّر إتمام التسليم. تحقق من الاتصال وحاول مرة أخرى.');
       }
       busy = false; form.classList.remove('busy'); btn.disabled = false; up.hidden = true;
     };
@@ -1437,7 +1441,7 @@ const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx-JZiX3UbjYc4UUCVj5
         + '<div class="up" hidden role="status" aria-live="polite"><div class="bar"><i></i></div><p></p></div>'
         + '<button class="btn-reg" type="submit"><span>' + c.send + '</span></button></form>'
         + '<div class="sheet-done" hidden><span class="done-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><h3>' + c.done[0] + '</h3><p>' + c.done[1] + '</p><button class="btn-reg" type="button" data-close><span>العودة إلى الموقع</span></button></div>'
-        + '<p class="sheet-alt" hidden>تعذّر الرفع؟ يمكنك التسليم عبر <a href="' + SUBMIT_URL + '" target="_blank" rel="noopener noreferrer">نموذج Google البديل</a></p>';
+        + '<p class="sheet-alt" hidden>تعذّر إتمام التسليم. تحقق من اتصالك بالإنترنت ثم اضغط «تسليم المشروع» مرة أخرى.</p>';
       if (lockSrc) {
         const lk = lockSrc.cloneNode(true);
         lk.classList.remove('lockup--sm'); lk.removeAttribute('data-reveal');
