@@ -602,57 +602,6 @@ body.has-pointer .cursor-glow{opacity:1}
 .lk-bar{flex:none;width:max(1px,calc(var(--k)*1.5));height:calc(var(--k)*52);background:linear-gradient(transparent,rgba(255,255,255,.55),transparent)}
 [data-reveal]:not(.in){transition-duration:.5s;transition-delay:0s}
 
-/* ============ In-site forms (answers are sent to the Google Forms) ============ */
-html.sheet-lock{overflow:hidden}
-.sheet{position:fixed;inset:0;z-index:80;color:var(--white);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
-.sheet.open{opacity:1;visibility:visible;transition:opacity .35s ease}
-.sheet-scroll{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;outline:none}
-.sheet-page{position:relative;min-height:100%;overflow:hidden;padding:calc(34px + env(safe-area-inset-top)) 0 calc(56px + env(safe-area-inset-bottom));background:radial-gradient(90% 38% at 0% 30%,rgba(4,112,252,.40),transparent 70%),radial-gradient(80% 30% at 100% 92%,rgba(12,52,233,.30),transparent 70%),linear-gradient(180deg,#00072c,#00061f 60%,#00041a);transform:translateY(16px);transition:transform .5s var(--ease)}
-.sheet.open .sheet-page{transform:none}
-.sheet-wall{position:absolute;inset:-18% -14%;transform:rotate(-9deg);opacity:.10;pointer-events:none;background-repeat:repeat;background-size:calc(630px*var(--ws,1)) calc(240px*var(--ws,1))}
-@media (max-width:639px){.sheet-wall{--ws:.6}.sheet-page{padding-top:calc(76px + env(safe-area-inset-top))}}
-.sheet-in{position:relative;z-index:1;width:min(680px,100% - 2 * var(--gutter));margin-inline:auto}
-.sheet-x{position:absolute;z-index:3;top:max(14px,env(safe-area-inset-top));left:max(14px,env(safe-area-inset-left));width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(0,7,44,.72);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--white);transition:background-color .2s ease,border-color .2s ease}
-.sheet-x span{position:relative;width:18px;height:18px}
-.sheet-x span::before,.sheet-x span::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;border-radius:2px;background:currentColor}
-.sheet-x span::before{rotate:45deg}.sheet-x span::after{rotate:-45deg}
-.sheet-x:hover,.sheet-x:focus-visible{background:rgba(205,220,41,.18);border-color:var(--lime);outline:none}
-.panel[hidden],.sheet-done[hidden],.sheet-form[hidden],.sheet-alt[hidden]{display:none!important}
-.sheet .lockup{--k:min(.85px,calc((100vw - 36px)/584));margin-inline:auto}
-.sheet-head{text-align:center}
-.sheet-head h2{margin:20px 0 8px;font-family:var(--f-head);font-weight:800;font-size:clamp(24px,6.4vw,36px);line-height:1.35}
-.sheet-head p{margin:0 auto;max-width:54ch;color:var(--muted);font-size:15.5px;line-height:1.9}
-.sheet-form,.sheet-done{margin-top:24px;padding:clamp(16px,4.6vw,30px);border-radius:var(--radius);background:rgba(2,14,72,.55);border:1px solid rgba(18,187,254,.2);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.35)}
-.sheet-form{display:grid;gap:16px}
-.fld{display:grid;gap:7px}
-.fld .lbl{font-family:var(--f-head);font-weight:600;font-size:15px;line-height:1.6}
-.fld .rq{color:var(--lime);margin-inline-start:5px}
-.fld small{color:var(--faint);font-size:12.5px;line-height:1.6}
-.fld input[type=text],.fld input[type=tel],.fld input[type=email],.fld input[type=url],.fld textarea{width:100%;min-height:50px;padding:12px 14px;border-radius:14px;background:rgba(0,7,44,.7);border:1px solid rgba(255,255,255,.17);color:var(--white);font:500 16px/1.6 var(--f-body);transition:border-color .2s ease,box-shadow .2s ease}
-.fld textarea{resize:vertical;min-height:84px}
-.fld input.ltr{direction:ltr;text-align:left}
-.fld input::placeholder,.fld textarea::placeholder{color:var(--faint)}
-.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--lime);box-shadow:0 0 0 3px rgba(205,220,41,.22)}
-.fld .err{display:none;color:#ff8fa0;font-size:13px;line-height:1.6}
-.fld.bad .err{display:block}
-.fld.bad input,.fld.bad textarea,.fld.bad .opt span{border-color:#ff6b81}
-.opts{display:grid;gap:8px}
-.opt{position:relative;display:block}
-.opt input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
-.opt span{display:flex;align-items:center;gap:11px;min-height:48px;padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.17);background:rgba(0,7,44,.55);font-family:var(--f-head);font-weight:500;font-size:15px;transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease}
-.opt span::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.5);transition:border-color .2s ease,background .2s ease}
-.opt input:checked+span{border-color:var(--lime);background:rgba(205,220,41,.12)}
-.opt input:checked+span::before{border-color:var(--lime);background:radial-gradient(circle,var(--lime) 42%,transparent 48%)}
-.opt input:focus-visible+span{box-shadow:0 0 0 3px rgba(205,220,41,.3)}
-.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
-.sheet-form .btn-reg,.sheet-done .btn-reg{width:100%;margin-top:6px}
-.sheet-form .btn-reg:disabled{opacity:.65;pointer-events:none}
-.sheet-done{display:grid;justify-items:center;gap:12px;text-align:center;padding-block:clamp(26px,7vw,44px)}
-.sheet-done h3{margin:0;font-family:var(--f-head);font-weight:800;font-size:clamp(22px,5.6vw,28px)}
-.sheet-done p{margin:0;max-width:44ch;color:var(--muted);line-height:1.9}
-.done-ic{display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:rgba(205,220,41,.14);border:1px solid rgba(205,220,41,.6);color:var(--lime);box-shadow:0 0 40px rgba(205,220,41,.25)}
-.sheet-alt{margin:18px 0 0;text-align:center;font-size:13.5px;color:var(--faint);line-height:1.8}
-.sheet-alt a{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
 .lockup--sm{--k:min(.62px,calc((100vw - 36px)/584));margin-bottom:8px}
 .hero-cta{display:flex;flex-direction:column;align-items:center;gap:6px}
 .hero-cta small{font-family:var(--f-head);font-size:13.5px;color:var(--faint)}
@@ -769,8 +718,8 @@ html.sheet-lock{overflow:hidden}
       <a href="#time">الوقت</a>
       <a href="#submit">التسليم</a>
     </div>
-    <a class="nav-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSdub0UgETt-d1AgwK2VwagBxJvvnf_QKPIg7utjytO4HhI16g/viewform" target="_blank" rel="noopener noreferrer" data-register aria-label="سجّل الآن في الهاكاثون">
-      <svg class="ic"><use href="#i-arrow"/></svg><span class="cta-short">سجّل</span><span class="cta-long">سجّل الآن</span>
+    <a class="nav-cta" href="#submit" data-submit aria-label="سلّم مشروعك">
+      <svg class="ic"><use href="#i-arrow"/></svg><span class="cta-short">سلّم</span><span class="cta-long">سلّم مشروعك</span>
     </a>
     <span class="nav-progress" aria-hidden="true"></span>
   </nav>
@@ -793,8 +742,8 @@ html.sheet-lock{overflow:hidden}
         <div class="ribbon"><span class="star" aria-hidden="true">✦</span><span>هاكاثون الذكاء الاصطناعي في الطيران</span><span class="star" aria-hidden="true">✦</span></div>
       </div>
       <div class="hero-cta" data-reveal style="--d:3">
-        <a class="btn-reg" href="https://docs.google.com/forms/d/e/1FAIpQLSdub0UgETt-d1AgwK2VwagBxJvvnf_QKPIg7utjytO4HhI16g/viewform" target="_blank" rel="noopener noreferrer" data-register>سجّل الآن<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <small>املأ نموذج التسجيل هنا مباشرة</small>
+        <a class="btn-reg" href="#submit" data-submit>سلّم مشروعك<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <small>ارفع العرض التقديمي والنموذج الأولي</small>
       </div>
       <a class="scroll-cue" href="#mission" aria-label="انتقل إلى مهمتكم" data-reveal style="--d:4"><svg class="ic"><use href="#i-down"/></svg></a>
     </div>
@@ -913,7 +862,7 @@ html.sheet-lock{overflow:hidden}
             </div>
             <h3>تصميم نموذج أولي</h3>
           </div>
-          <p>تصميم شاشة أو شاشتين (كحد أقصى) توضّح شكل النظام وآلية عمله، باستخدام أي أداة مناسبة.</p>
+          <p>تصميم شاشة أو شاشتين (كحد أقصى) توضّح شكل النظام وآلية عمله، باستخدام أي أداة مناسبة، ثم ارفعه كملف (صورة أو PDF) عند التسليم.</p>
           <div class="phones" aria-hidden="true">
             <svg viewBox="0 0 320 176">
               <defs>
@@ -964,7 +913,7 @@ html.sheet-lock{overflow:hidden}
             </div>
             <h3>العرض التقديمي</h3>
           </div>
-          <p>تجهيز عرض تقديمي مكوّن من 5 شرائح يلخّص الفكرة والنموذج الأولي، وتسليمه عبر الرابط عند الانتهاء.</p>
+          <p>تجهيز عرض تقديمي مكوّن من 5 شرائح يلخّص الفكرة والنموذج الأولي، وتسليمه كملف عبر نموذج التسليم عند الانتهاء.</p>
           <ol class="slides" aria-hidden="true">
             <li style="--i:0">1</li><li style="--i:1">2</li><li style="--i:2">3</li><li style="--i:3">4</li><li style="--i:4">5</li>
           </ol>
@@ -1062,7 +1011,7 @@ html.sheet-lock{overflow:hidden}
               <span class="pr-line"><span class="pr-plane"><svg viewBox="0 0 24 24"><use href="#i-plane"/></svg></span></span>
               <span class="pr-dot end"></span>
             </div>
-            <p class="pass-text">يتم التسليم عبر النموذج التالي عند الانتهاء.</p>
+            <p class="pass-text">يتم التسليم برفع ملفين عبر النموذج التالي: العرض التقديمي والنموذج الأولي (يتطلب حساب Google).</p>
             <span class="btn-wrap">
               <a class="btn-submit" href="#submit" data-submit>تسليم المشروع<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </span>
@@ -1094,8 +1043,6 @@ html.sheet-lock{overflow:hidden}
   </div>
 </footer>
 
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="نموذج الهاكاثون" aria-hidden="true"><div class="sheet-scroll" tabindex="-1"><div class="sheet-page"><div class="sheet-wall" aria-hidden="true"></div><div class="sheet-in"></div></div></div><button class="sheet-x" type="button" aria-label="إغلاق النموذج"><span aria-hidden="true"></span></button></div>
-
 <div class="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -1103,9 +1050,6 @@ html.sheet-lock{overflow:hidden}
    ضع رابط نموذج Google Forms للتسليم بين علامتي التنصيص.
    مثال: const SUBMIT_URL = "https://forms.gle/xxxxxxxx";            */
 const SUBMIT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmczPlIlFZgZzPGYq1RWdmAGZ3pcB-aR0Q/viewform";
-
-/* رابط نموذج التسجيل (Google Forms) */
-const REGISTER_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdub0UgETt-d1AgwK2VwagBxJvvnf_QKPIg7utjytO4HhI16g/viewform";
 
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
@@ -1255,183 +1199,6 @@ const REGISTER_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdub0UgETt-d1AgwK
     });
   }
   wireLinks('[data-submit]', SUBMIT_URL, 'سيتم تفعيل رابط التسليم قريبًا.');
-  wireLinks('[data-register]', REGISTER_URL, 'سيتم تفعيل رابط التسجيل قريبًا.');
-
-  /* ── النماذج داخل الموقع: الإجابات تصل إلى نماذج Google نفسها ── */
-  const TRACKS = ['التنبؤ والتحليل', 'العمليات الأرضية', 'الاستدامة والوقود', 'خدمة العملاء', 'تجربة المسافر'];
-  const MEMBER_HINT = 'الاسم الكامل - الجامعة - التخصص - الجوال - البريد الإلكتروني';
-  const GF = {
-    register: {
-      link: REGISTER_URL,
-      post: 'https://docs.google.com/forms/d/e/1FAIpQLSdub0UgETt-d1AgwK2VwagBxJvvnf_QKPIg7utjytO4HhI16g/formResponse',
-      title: 'تسجيل فريقك في الهاكاثون',
-      lead: 'يسجّل قائد الفريق مرة واحدة فقط، ويُدخل بيانات بقية الأعضاء: العضو 2 إلزامي، والأعضاء 3 إلى 5 اختياريون.',
-      send: 'إرسال التسجيل',
-      done: ['تم استلام تسجيل فريقكم', 'سنتواصل معكم عبر البريد الإلكتروني ورقم الجوال اللذين أدخلتموهما.'],
-      f: [
-        { e: 47713651, l: 'الاسم الكامل (قائد الفريق)', r: 1, ac: 'name' },
-        { e: 1256266312, l: 'الجامعة / الجهة', r: 1, ac: 'organization' },
-        { e: 518689108, l: 'التخصص', r: 1 },
-        { e: 714418878, l: 'رقم الجوال', r: 1, t: 'tel', ltr: 1, ph: '05xxxxxxxx', ac: 'tel' },
-        { e: 1765911382, l: 'البريد الإلكتروني', r: 1, t: 'email', ltr: 1, ph: 'name@example.com', ac: 'email' },
-        { e: 2041202705, l: 'اسم الفريق', r: 1 },
-        { e: 636303921, l: 'المسار الذي ترغب بالمشاركة فيه', r: 1, t: 'radio', o: TRACKS },
-        { e: 710619684, l: 'العضو 2', r: 1, t: 'area', rows: 2, h: MEMBER_HINT },
-        { e: 1902871078, l: 'العضو 3 (اختياري)', t: 'area', rows: 2, h: MEMBER_HINT },
-        { e: 986696696, l: 'العضو 4 (اختياري)', t: 'area', rows: 2, h: MEMBER_HINT },
-        { e: 683931183, l: 'العضو 5 (اختياري)', t: 'area', rows: 2, h: MEMBER_HINT }
-      ]
-    },
-    submit: {
-      link: SUBMIT_URL,
-      post: 'https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmczPlIlFZgZzPGYq1RWdmAGZ3pcB-aR0Q/formResponse',
-      title: 'تسليم مشروع فريقك',
-      lead: 'يُسلَّم المشروع مرة واحدة لكل فريق قبل انتهاء مدة الـ90 دقيقة. تأكد أن الروابط تعمل ومتاحة لأي شخص لديه الرابط.',
-      send: 'تسليم المشروع',
-      done: ['تم استلام مشروع فريقكم', 'بالتوفيق في العرض! تأكدوا من بقاء الروابط متاحة حتى انتهاء التقييم.'],
-      f: [
-        { e: 1239252213, l: 'اسم الفريق', r: 1 },
-        { e: 2041601259, l: 'اسم المشروع', r: 1 },
-        { e: 349862114, l: 'رابط المشروع أو العرض التجريبي', r: 1, t: 'url', ltr: 1, ph: 'https://' },
-        { e: 1148955772, l: 'رابط الكود المصدري (GitHub أو غيره) — اختياري', t: 'url', ltr: 1, ph: 'https://' },
-        { e: 126677578, l: 'رابط الفيديو التعريفي أو ملف العرض التقديمي — اختياري', t: 'url', ltr: 1, ph: 'https://' },
-        { e: 1672135405, l: 'البريد الإلكتروني لقائد الفريق', r: 1, t: 'email', ltr: 1, ph: 'name@example.com', ac: 'email' },
-        { e: 210098089, l: 'المسار الذي يشارك فيه الفريق', r: 1, t: 'radio', o: TRACKS },
-        { e: 652761772, l: 'وصف مختصر للفكرة والحل', r: 1, t: 'area', rows: 5 }
-      ]
-    }
-  };
-  const sheet = $('#sheet');
-  if (sheet) {
-    const lockSrc = $('.foot .lockup');
-    const fieldHTML = (f, k, i) => {
-      const id = 'f-' + k + '-' + i, req = f.r ? '<span class="rq" aria-hidden="true">*</span>' : '';
-      let ctl, lab;
-      if (f.t === 'radio') {
-        lab = '<div class="lbl" id="' + id + '-l">' + f.l + req + '</div>';
-        ctl = '<div class="opts" role="radiogroup" aria-labelledby="' + id + '-l">' + f.o.map(o => '<label class="opt"><input type="radio" name="' + id + '" value="' + o + '"><span>' + o + '</span></label>').join('') + '</div>';
-      } else {
-        lab = '<label class="lbl" for="' + id + '">' + f.l + req + '</label>';
-        ctl = f.t === 'area'
-          ? '<textarea id="' + id + '" rows="' + (f.rows || 3) + '"></textarea>'
-          : '<input id="' + id + '" type="' + (f.t || 'text') + '"' + (f.ltr ? ' class="ltr" dir="ltr"' : '') + (f.ph ? ' placeholder="' + f.ph + '"' : '') + (f.ac ? ' autocomplete="' + f.ac + '"' : '') + (f.t === 'tel' ? ' inputmode="tel"' : f.t === 'email' ? ' inputmode="email"' : f.t === 'url' ? ' inputmode="url"' : '') + '>';
-      }
-      return '<div class="fld" data-i="' + i + '">' + lab + (f.h ? '<small>' + f.h + '</small>' : '') + ctl + '<span class="err" role="alert"></span></div>';
-    };
-    const digits = s => s.replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c)).replace(/[۰-۹]/g, c => '۰۱۲۳۴۵۶۷۸۹'.indexOf(c));
-    const readField = (f, box) => f.t === 'radio' ? ((box.querySelector('input:checked') || {}).value || '') : box.querySelector('input,textarea').value.trim();
-    const check = (f, v) => {
-      if (!v) return f.r ? (f.t === 'radio' ? 'اختر أحد الخيارات' : 'هذا الحقل مطلوب') : '';
-      if (f.t === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'أدخل بريدًا إلكترونيًا صحيحًا';
-      if (f.t === 'tel' && !/^\+?\d{9,15}$/.test(v.replace(/[\s-]/g, ''))) return 'أدخل رقم جوال صحيحًا';
-      if (f.t === 'url' && !/^https?:\/\/\S+\.\S+/i.test(v)) return 'أدخل رابطًا صحيحًا يبدأ بـ https://';
-      return '';
-    };
-    const submitForm = async (k, p) => {
-      const c = GF[k], form = $('form', p), btn = $('button[type=submit]', form), body = new URLSearchParams();
-      let bad = null;
-      $$('.fld', form).forEach(box => {
-        const f = c.f[+box.dataset.i];
-        let v = readField(f, box);
-        if (f.t === 'tel') v = digits(v);
-        const msg = check(f, v);
-        box.classList.toggle('bad', !!msg);
-        $('.err', box).textContent = msg;
-        if (msg && !bad) bad = box;
-        body.append('entry.' + f.e, v);
-      });
-      if (bad) {
-        bad.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
-        const first = $('input,textarea', bad);
-        if (first) first.focus({ preventScroll: true });
-        return;
-      }
-      body.append('fvv', '1'); body.append('pageHistory', '0'); body.append('fbzx', String(Date.now()));
-      if (!$('.hp', form).value) {
-        btn.disabled = true;
-        try { await fetch(c.post, { method: 'POST', mode: 'no-cors', body: body }); }
-        catch (err) { btn.disabled = false; showToast('تعذّر الإرسال. تحقق من الاتصال وحاول مرة أخرى، أو استخدم رابط نموذج Google أسفل الصفحة.'); return; }
-        btn.disabled = false;
-      }
-      form.reset(); form.hidden = true; $('.sheet-alt', p).hidden = true; $('.sheet-done', p).hidden = false;
-      $('.sheet-scroll', sheet).scrollTop = 0;
-    };
-    Object.keys(GF).forEach(k => {
-      const c = GF[k], p = document.createElement('section');
-      p.className = 'panel'; p.dataset.kind = k; p.hidden = true;
-      p.innerHTML = '<div class="sheet-head"><h2>' + c.title + '</h2><p>' + c.lead + '</p></div>'
-        + '<form class="sheet-form" novalidate>' + c.f.map((f, i) => fieldHTML(f, k, i)).join('')
-        + '<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">'
-        + '<button class="btn-reg" type="submit"><span>' + c.send + '</span></button></form>'
-        + '<div class="sheet-done" hidden><span class="done-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><h3>' + c.done[0] + '</h3><p>' + c.done[1] + '</p><button class="btn-reg" type="button" data-close><span>العودة إلى الموقع</span></button></div>'
-        + '<p class="sheet-alt">تفضّل استخدام نموذج Google مباشرة؟ <a href="' + c.link + '" target="_blank" rel="noopener noreferrer">افتحه من هنا</a></p>';
-      if (lockSrc) {
-        const lk = lockSrc.cloneNode(true);
-        lk.classList.remove('lockup--sm'); lk.removeAttribute('data-reveal');
-        p.querySelector('.sheet-head').prepend(lk);
-      }
-      $('.sheet-in', sheet).appendChild(p);
-      $('form', p).addEventListener('submit', e => { e.preventDefault(); submitForm(k, p); });
-    });
-    /* خلفية جدارية من الشعارات الثلاثة (تُرسم مرة واحدة على canvas) */
-    const makeWall = async () => {
-      const wall = $('.sheet-wall', sheet);
-      if (wall.dataset.ok) return;
-      wall.dataset.ok = '1';
-      try {
-        const S = 2, W = 630, H = 240;
-        const load = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
-        const svgImg = async (u, w, h) => { const t = await (await fetch(u)).text(); return load('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(t.replace('<svg ', '<svg width="' + w + '" height="' + h + '" '))); };
-        const uj = await svgImg('assets/logo-uj-white.svg', 70 * S, 74 * S);
-        const fad = await svgImg('assets/logo-flyadeal-white.svg', 118 * S, 40 * S);
-        const mUrl = (getComputedStyle($('.club-logo')).getPropertyValue('--m').match(/url\(["']?([^"')]+)["']?\)/) || [])[1];
-        const mk = await load(mUrl);
-        const club = document.createElement('canvas');
-        club.width = 150 * S; club.height = Math.round(150 * S * mk.naturalHeight / mk.naturalWidth);
-        const cx = club.getContext('2d');
-        cx.drawImage(mk, 0, 0, club.width, club.height);
-        cx.globalCompositeOperation = 'source-in'; cx.fillStyle = '#fff'; cx.fillRect(0, 0, club.width, club.height);
-        const cv = document.createElement('canvas'); cv.width = W * S; cv.height = H * S;
-        const g = cv.getContext('2d');
-        [[uj, 105, 60], [club, 315, 60], [fad, 525, 60], [fad, 105, 180], [uj, 315, 180], [club, 525, 180]].forEach(a => g.drawImage(a[0], a[1] * S - a[0].width / 2, a[2] * S - a[0].height / 2));
-        wall.style.backgroundImage = 'url(' + cv.toDataURL('image/png') + ')';
-      } catch (err) { wall.dataset.ok = ''; }
-    };
-    let opener = null, pushed = false;
-    const setInert = on => $$('header, main, footer').forEach(el => { el.inert = on; });
-    const openSheet = (k, fromHash) => {
-      if (!GF[k]) return;
-      opener = document.activeElement;
-      $$('.panel', sheet).forEach(p => {
-        const on = p.dataset.kind === k;
-        p.hidden = !on;
-        if (on) { $('form', p).hidden = false; $('.sheet-done', p).hidden = true; $('.sheet-alt', p).hidden = false; }
-      });
-      sheet.classList.add('open'); sheet.setAttribute('aria-hidden', 'false');
-      document.documentElement.classList.add('sheet-lock'); setInert(true);
-      const sc = $('.sheet-scroll', sheet); sc.scrollTop = 0; sc.focus({ preventScroll: true });
-      makeWall();
-      if (!fromHash && !pushed) { history.pushState({ sheet: k }, '', '#form-' + k); pushed = true; }
-    };
-    const closeSheet = fromPop => {
-      if (!sheet.classList.contains('open')) return;
-      sheet.classList.remove('open'); sheet.setAttribute('aria-hidden', 'true');
-      document.documentElement.classList.remove('sheet-lock'); setInert(false);
-      if (pushed) { pushed = false; if (!fromPop) history.back(); }
-      else if (!fromPop && /^#form-/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
-      if (opener && opener.focus) opener.focus({ preventScroll: true });
-    };
-    sheet.addEventListener('click', e => { if (e.target.closest('[data-close], .sheet-x')) closeSheet(false); });
-    addEventListener('popstate', () => closeSheet(true));
-    addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(false); });
-    const hook = (sel, k) => $$(sel).forEach(a => a.addEventListener('click', e => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
-      e.preventDefault(); openSheet(k, false);
-    }));
-    hook('[data-register]', 'register'); hook('[data-submit]', 'submit');
-    const hm = location.hash.match(/^#form-(register|submit)$/);
-    if (hm) openSheet(hm[1], true);
-  }
 
   /* ── Countdown (90 min) ── */
   const tEl = $('#timer-digits'), tBox = $('#timer'), tBtn = $('#timer-toggle'), tReset = $('#timer-reset');
