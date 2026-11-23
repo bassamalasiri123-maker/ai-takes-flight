@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_SA">
 <meta property="og:title" content="AI Takes Flight — هاكاثون الذكاء الاصطناعي في الطيران">
-<meta property="og:description" content="نادي الذكاء الاصطناعي بجامعة جدة · بالشراكة مع طيران أديل. اختر مساراً، حدّد مشكلة، وابتكر حلاً ذكياً خلال 90 دقيقة.">
+<meta property="og:description" content="نادي الذكاء الاصطناعي بجامعة جدة · بالشراكة مع طيران أديل. اختر تحدياً من تحديات طيران أديل، وابتكر حلاً ذكياً خلال 90 دقيقة.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AI Takes Flight">
 <meta name="twitter:description" content="هاكاثون الذكاء الاصطناعي في الطيران — جامعة جدة بالشراكة مع طيران أديل">
@@ -208,8 +208,8 @@ body.has-pointer .cursor-glow{opacity:1}
   background:linear-gradient(270deg, var(--cyan), var(--lime));
   transform-origin:right;transform:scaleX(var(--p, 0));
 }
-@media (max-width:519px){.cta-short{display:none}.nav-cta{padding:0;width:38px;height:38px;justify-content:center}.nav-links a{padding-inline:4px;font-size:13px}}
-@media (max-width:359px){.nav-links a{font-size:12px;padding-inline:3px}}
+@media (max-width:519px){.cta-short{display:none}.nav-cta{padding:0;width:38px;height:38px;justify-content:center}.nav-links a{padding-inline:4px;font-size:12.5px}}
+@media (max-width:359px){.nav-links a{font-size:11.5px;padding-inline:2px}}
 @media (min-width:768px){
   .brand{display:flex}
   .cta-short{display:none}.cta-long{display:inline}
@@ -344,13 +344,12 @@ body.has-pointer .cursor-glow{opacity:1}
 .track.is-open .track-body{grid-template-rows:1fr}
 .track-body > div{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s linear .5s}
 .track.is-open .track-body > div{visibility:visible;transition-delay:0s}
-.track-body p{
-  margin:0 16px 18px;padding-top:14px;border-top:1px dashed rgba(205,220,41,.22);
-  font-size:16px;line-height:1.9;color:var(--white);
-  opacity:0;transform:translateY(-6px);transition:opacity .4s ease .1s, transform .5s var(--ease) .1s;
-}
-.track.is-open .track-body p{opacity:1;transform:none}
-@media (min-width:640px){.track-body p{margin-inline-start:calc(16px + 1.7em + 12px + 42px + 12px)}}
+.tb{margin:0 16px 18px;padding-top:14px;border-top:1px dashed rgba(205,220,41,.22);opacity:0;transform:translateY(-6px);transition:opacity .4s ease .1s,transform .5s var(--ease) .1s}
+.track.is-open .tb{opacity:1;transform:none}
+.tb p{margin:0 0 8px;font-size:16px;line-height:1.9;color:var(--white)}
+.tb h4{margin:16px 0 6px;font-family:var(--f-head);font-weight:700;font-size:15px;line-height:1.6;color:var(--lime)}
+.tb ul.l{margin:0;padding-inline-start:20px;font-size:15.5px;line-height:1.9;color:var(--white)}
+.tb ul.l li::marker{color:var(--cyan)}
 @media (min-width:1000px){
   .mission-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);align-items:start;gap:36px}
   .mission-card{position:sticky;top:110px}
@@ -407,6 +406,7 @@ body.has-pointer .cursor-glow{opacity:1}
 .req--deck.is-lit .slides li{transform:translateY(-6px);border-color:rgba(205,220,41,.45)}
 @media (min-width:900px){
   .req-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .req--wide{grid-column:1/-1}
   .req--idea{grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,.8fr) 2fr;align-items:center;gap:20px 40px}
   .req--idea .pills{margin:0;gap:12px}
   .req--idea .pills li{padding:10px 20px;font-size:16px}
@@ -732,6 +732,15 @@ html.sheet-lock{overflow:hidden}
   .js [data-reveal]{opacity:1;transform:none}
   .radar-sweep,.radar-blip{display:none}
 }
+.mission-sub{margin:14px 0 0;color:var(--muted);font-size:16px;line-height:1.9}
+.track-name small{display:block;font-family:var(--f-lat);font-weight:600;font-size:12.5px;color:var(--faint);letter-spacing:.01em}
+.crit{display:grid;gap:16px;margin:6px 0 0;padding:0;list-style:none}
+.crit li{display:grid;grid-template-columns:minmax(110px,200px) 1fr auto;align-items:center;gap:14px;font-family:var(--f-head);font-weight:600;font-size:clamp(14.5px,3.9vw,17px);line-height:1.5}
+.crit .bar{height:12px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.crit .bar i{display:block;height:100%;width:calc(var(--v) * 4%);border-radius:inherit;background:linear-gradient(270deg,#E6F35A,var(--lime));box-shadow:0 0 14px rgba(205,220,41,.5);transform:scaleX(0);transform-origin:right;transition:transform 1.1s var(--ease) calc(var(--i) * 110ms + .4s)}
+.in .crit .bar i{transform:scaleX(1)}
+.crit b{font-family:var(--f-lat);font-weight:900;font-size:clamp(20px,5vw,26px);color:var(--lime);direction:ltr;min-width:3ch;text-align:end}
+@media (max-width:640px){.crit li{grid-template-columns:1fr auto}.crit .bar{grid-column:1/-1;order:3}}
 </style>
 </head>
 <body>
@@ -747,7 +756,8 @@ html.sheet-lock{overflow:hidden}
   <symbol id="i-landing" viewBox="0 0 24 24"><path d="M2 22h20"/><path d="M3.77 10.77 2 9l2-4.5 1.1.55c.55.28.9.84.9 1.45s.35 1.17.9 1.45L8 8.5l3-6 1.05.53a2 2 0 0 1 1.09 1.52l.72 5.4a2 2 0 0 0 1.09 1.52l4.4 2.2c.42.22.78.55 1.01.96l.6 1.03c.49.88-.06 1.98-1.06 2.1l-1.18.15c-.47.06-.95-.02-1.37-.24L4.29 11.15a2 2 0 0 1-.52-.38Z"/></symbol>
   <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></symbol>
-  <symbol id="i-luggage" viewBox="0 0 24 24"><path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2"/><path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14"/><path d="M10 20h4"/><circle cx="16" cy="20" r="2"/><circle cx="8" cy="20" r="2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-luggage" viewBox="0 0 24 24"><path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2"/><path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14"/><path d="M10 20h4"/><circle cx="16" cy="20" r="2"/><circle cx="8" cy="20" r="2"/></symbol>
   <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></symbol>
   <symbol id="i-present" viewBox="0 0 24 24"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></symbol>
@@ -795,6 +805,7 @@ html.sheet-lock{overflow:hidden}
       <span class="nav-pill" aria-hidden="true"></span>
       <a href="#mission">مهمتكم</a>
       <a href="#deliverables">المطلوب</a>
+      <a href="#criteria">التقييم</a>
       <a href="#time">الوقت</a>
       <a href="#submit">التسليم</a>
     </div>
@@ -837,61 +848,57 @@ html.sheet-lock{overflow:hidden}
       <div class="mission-grid">
         <div class="mission-card glass" data-reveal="slide">
           <svg class="ic mark-ic" aria-hidden="true"><use href="#i-target"/></svg>
-          <p class="mission-text">اختيار مسار من مسارات التحدي، وتحديد مشكلة حقيقية ضمنه، ثم ابتكار حل ذكي لها باستخدام الذكاء الاصطناعي.</p>
+          <p class="mission-text">اختيار تحدٍّ من تحديات طيران أديل الثلاثة، وتحليل مشكلته، ثم ابتكار حل ذكي وقابل للتوسع باستخدام الذكاء الاصطناعي.</p>
+          <p class="mission-sub">تواجه شركة طيران سريعة النمو ثلاثة تحديات تشغيلية تؤثر على رضا العملاء والأمن والامتثال وإنتاجية الموظفين، وتبحث عن حلول مبتكرة وقابلة للتوسع وفعّالة من حيث التكلفة تُطبَّق على كامل شبكتها. يمكنكم الاستعانة بالتقنية أو تحسين العمليات أو الأتمتة أو الذكاء الاصطناعي أو تحليل البيانات أو تطبيقات الجوال أو إنترنت الأشياء.</p>
         </div>
 
         <div>
           <div class="tracks-head" data-reveal>
-            <h3>مسارات التحدي</h3>
-            <span class="hint">اضغط على المسار لعرض وصفه</span>
+            <h3>تحديات الهاكاثون</h3>
+            <span class="hint">اضغط على التحدي لعرض تفاصيله</span>
           </div>
           <ul class="tracks">
-            <li class="track glass lift is-open" data-reveal style="--d:0">
-              <button class="track-head" type="button" aria-expanded="true" aria-controls="tb-1" id="th-1">
-                <span class="track-num">1</span>
-                <span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-chart"/></svg></span>
-                <span class="track-name">التنبؤ والتحليل</span>
-                <span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span>
-              </button>
-              <div class="track-body" id="tb-1" role="region" aria-labelledby="th-1"><div><p>كل ما يتعلق بتوقّع ما سيحدث للرحلة قبل وقوعه.</p></div></div>
-            </li>
-            <li class="track glass lift" data-reveal style="--d:1">
-              <button class="track-head" type="button" aria-expanded="false" aria-controls="tb-2" id="th-2">
-                <span class="track-num">2</span>
-                <span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-landing"/></svg></span>
-                <span class="track-name">العمليات الأرضية</span>
-                <span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span>
-              </button>
-              <div class="track-body" id="tb-2" role="region" aria-labelledby="th-2"><div><p>كل ما يحدث حول الطائرة من لحظة هبوطها حتى إقلاعها.</p></div></div>
-            </li>
-            <li class="track glass lift" data-reveal style="--d:2">
-              <button class="track-head" type="button" aria-expanded="false" aria-controls="tb-3" id="th-3">
-                <span class="track-num">3</span>
-                <span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-leaf"/></svg></span>
-                <span class="track-name">الاستدامة والوقود</span>
-                <span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span>
-              </button>
-              <div class="track-body" id="tb-3" role="region" aria-labelledby="th-3"><div><p>كل ما يتعلق باستهلاك الوقود والطاقة وأثر الرحلة على البيئة.</p></div></div>
-            </li>
-            <li class="track glass lift" data-reveal style="--d:3">
-              <button class="track-head" type="button" aria-expanded="false" aria-controls="tb-4" id="th-4">
-                <span class="track-num">4</span>
-                <span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-headset"/></svg></span>
-                <span class="track-name">خدمة العملاء</span>
-                <span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span>
-              </button>
-              <div class="track-body" id="tb-4" role="region" aria-labelledby="th-4"><div><p>كل ما يتعلق بتواصل طيران أديل مع الركاب وخدمتهم.</p></div></div>
-            </li>
-            <li class="track glass lift" data-reveal style="--d:4">
-              <button class="track-head" type="button" aria-expanded="false" aria-controls="tb-5" id="th-5">
-                <span class="track-num">5</span>
-                <span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-luggage"/></svg></span>
-                <span class="track-name">تجربة المسافر</span>
-                <span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span>
-              </button>
-              <div class="track-body" id="tb-5" role="region" aria-labelledby="th-5"><div><p>رحلة الراكب من وصوله للمطار حتى جلوسه في مقعده.</p></div></div>
-            </li>
-          </ul>
+<li class="track glass lift is-open" data-reveal style="--d:0">
+<button class="track-head" type="button" aria-expanded="true" aria-controls="tb-1" id="th-1"><span class="track-num">1</span><span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-luggage"/></svg></span><span class="track-name">إدارة الأمتعة المفقودة والمنسية<small>Lost &amp; Found Baggage Management</small></span><span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button>
+<div class="track-body" id="tb-1" role="region" aria-labelledby="th-1"><div><div class="tb">
+<h4>المشكلة</h4>
+<p>يستقبل المطار والناقل شهرياً أمتعة كثيرة غير مُطالَب بها، ويصل كثير منها بلا بطاقة تعريف، وبلا تحديد لمالكها، ومع معلومات تتبّع محدودة. وبعد محاولات بحث مكثفة تبقى بعض الأمتعة دون من يطالب بها. وبحسب الأنظمة يجب التخلص من الأمتعة بعد فترة احتفاظ محددة (عادةً 3 أشهر)، ويصعب على الناقل ضمان:</p>
+<ul class="l"><li>تحديد مالك الأمتعة بدقة</li><li>تتبّع الأغراض المفقودة بكفاءة</li><li>شفافية عملية التخلص</li><li>إثبات أن الأمتعة أُتلفت فعلاً وفق السياسة</li></ul>
+<h4>الأسئلة المحورية</h4>
+<ul class="l"><li>كيف نتعرّف على الأمتعة عند تلف البطاقة أو فقدها؟</li><li>ما التقنيات التي تحسّن إمكانية تتبّع الأمتعة؟</li><li>كيف نراجع عمليات التخلص والإتلاف ونتحقق منها؟</li><li>كيف نُسرّع معالجة مطالبات المسافرين؟</li></ul>
+<h4>المخرجات المتوقعة</h4>
+<ul class="pills"><li>تقليل حالات الأمتعة مجهولة المالك</li><li>رفع معدل استرداد الأمتعة</li><li>عملية تخلص قابلة للتحقق</li><li>تحسين تجربة العميل</li></ul>
+</div></div></div>
+</li>
+<li class="track glass lift" data-reveal style="--d:1">
+<button class="track-head" type="button" aria-expanded="false" aria-controls="tb-2" id="th-2"><span class="track-num">2</span><span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-shield"/></svg></span><span class="track-name">السرقة من الخزائن العلوية أثناء الرحلة<small>In-Flight Theft from Overhead Compartments</small></span><span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button>
+<div class="track-body" id="tb-2" role="region" aria-labelledby="th-2"><div><div class="tb">
+<h4>المشكلة</h4>
+<p>وردت للناقل بلاغات متفرقة عن فقدان مقتنيات شخصية وحوادث سرقة أثناء الرحلات. والتحديات الحالية:</p>
+<ul class="l"><li>تخزين الركاب أمتعتهم بعيداً عن مقاعدهم المخصصة</li><li>امتلاء الخزائن العلوية</li><li>عدم قدرة الطاقم على مراقبة جميع الخزائن باستمرار</li><li>صعوبة معرفة من وصل إلى حقيبة معينة أثناء الرحلة</li></ul>
+<p style="margin-top:10px">وينتج عن ذلك استياء الركاب، وصعوبة التحقيق، وزيادة المخاوف الأمنية.</p>
+<h4>الأسئلة المحورية</h4>
+<ul class="l"><li>كيف نؤمّن الأمتعة في الخزائن العلوية؟</li><li>كيف نشجّع الركاب على وضع حقائبهم قرب مقاعدهم المخصصة؟</li><li>كيف نكشف الوصول المشبوه إلى الحقائب؟</li><li>كيف نحافظ على الخصوصية مع تحسين الأمن؟</li></ul>
+<h4>المخرجات المتوقعة</h4>
+<ul class="pills"><li>تقليل حوادث السرقة</li><li>تحسين إدارة الخزائن العلوية</li><li>دعم مراقبة الطاقم</li><li>توازن بين الأمن والخصوصية</li></ul>
+</div></div></div>
+</li>
+<li class="track glass lift" data-reveal style="--d:2">
+<button class="track-head" type="button" aria-expanded="false" aria-controls="tb-3" id="th-3"><span class="track-num">3</span><span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-chart"/></svg></span><span class="track-name">رقمنة عملية تحليل الاحتياجات التدريبية<small>Training Needs Analysis (TNA) Digitalization</small></span><span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button>
+<div class="track-body" id="tb-3" role="region" aria-labelledby="th-3"><div><div class="tb">
+<h4>المشكلة</h4>
+<p>تُجري إدارة التعلم والتطوير تحليلاً سنوياً للاحتياجات التدريبية (TNA)، وحالياً:</p>
+<ul class="l"><li>تُوزَّع ملفات Excel على جميع المدراء المباشرين</li><li>يُدخل كل مدير الاحتياجات التدريبية لفريقه</li><li>يعدّل عدة مستخدمين الملف نفسه</li><li>تُكتب البيانات فوق بعضها أو تتغير بالخطأ</li><li>تتلف التنسيقات والمعادلات</li><li>يتطلب التجميع جهداً يدوياً كبيراً</li></ul>
+<p style="margin-top:10px">والنتيجة: ضعف جودة البيانات، وتأخر الخطة التدريبية السنوية، وزيادة العبء الإداري.</p>
+<h4>الأسئلة المحورية</h4>
+<ul class="l"><li>كيف نجمع طلبات التدريب دون السماح بتعديلات غير مصرّح بها؟</li><li>كيف يرفع المدراء بياناتهم عبر مسار منظّم؟</li><li>كيف نؤتمت الموافقات وسير العمل؟</li><li>كيف تحصل الإدارة على تقارير ولوحات متابعة لحظية؟</li></ul>
+<h4>المخرجات المتوقعة</h4>
+<ul class="pills"><li>إنهاء مشكلة نسخ الجداول</li><li>حماية سلامة البيانات</li><li>تبسيط رفع بيانات المدراء</li><li>تقارير وقرارات أفضل</li></ul>
+<h4>مطلوب إضافي لهذا التحدي</h4>
+<ul class="l"><li>أداة تحليل تُظهر مثلاً: كم موظفاً في مستوى وظيفي معيّن سُجّل في أي دورة، وأهليتهم لها</li><li>تقرير يُنشأ من البيانات التي أدخلها المدراء</li></ul>
+</div></div></div>
+</li>
+</ul>
         </div>
       </div>
     </div>
@@ -916,14 +923,12 @@ html.sheet-lock{overflow:hidden}
               <span class="req-num">1</span>
               <span class="req-icon" aria-hidden="true"><svg class="ic"><use href="#i-bulb"/></svg></span>
             </div>
-            <h3>بطاقة الفكرة</h3>
+            <h3>مفهوم الحل</h3>
           </div>
           <ul class="pills">
-            <li>المشكلة</li>
-            <li>الفئة المتضررة</li>
-            <li>البيانات المطلوبة</li>
-            <li>دور الذكاء الاصطناعي</li>
-            <li>الأثر المتوقع</li>
+            <li>تحليل المشكلة</li>
+            <li>الحل المقترح</li>
+            <li>رحلة المستخدم</li>
           </ul>
         </article>
 
@@ -933,9 +938,9 @@ html.sheet-lock{overflow:hidden}
               <span class="req-num">2</span>
               <span class="req-icon" aria-hidden="true"><svg class="ic"><use href="#i-phone"/></svg></span>
             </div>
-            <h3>تصميم نموذج أولي</h3>
+            <h3>البنية التقنية والنموذج الأولي</h3>
           </div>
-          <p>تصميم شاشة أو شاشتين (كحد أقصى) توضّح شكل النظام وآلية عمله، باستخدام أي أداة مناسبة، ثم ارفعه كملف (صورة أو PDF) عند التسليم.</p>
+          <p>مخطط البنية التقنية للحل، مع تصميم شاشة أو شاشتين (كحد أقصى) توضّح شكل النظام وآلية عمله، باستخدام أي أداة مناسبة، ثم ارفعهما كملف (صورة أو PDF) عند التسليم.</p>
           <div class="phones" aria-hidden="true">
             <svg viewBox="0 0 320 176">
               <defs>
@@ -986,7 +991,7 @@ html.sheet-lock{overflow:hidden}
             </div>
             <h3>العرض التقديمي</h3>
           </div>
-          <p>تجهيز عرض تقديمي مكوّن من 5 شرائح يلخّص الفكرة والنموذج الأولي، وتسليمه كملف عبر نموذج التسليم عند الانتهاء.</p>
+          <p>عرض تقديمي من 5 شرائح يلخّص مفهوم الحل والبنية التقنية والنموذج الأولي والأثر على العمل، ويُسلَّم كملف عبر نموذج التسليم عند الانتهاء.</p>
           <ol class="slides" aria-hidden="true">
             <li style="--i:0">1</li><li style="--i:1">2</li><li style="--i:2">3</li><li style="--i:3">4</li><li style="--i:4">5</li>
           </ol>
@@ -995,13 +1000,46 @@ html.sheet-lock{overflow:hidden}
     </div>
   </section>
 
-  <!-- ====== 03 Time ====== -->
+  <!-- ====== 03 Criteria ====== -->
+  <section class="section" id="criteria" aria-labelledby="h-crit">
+<div class="wrap">
+<header class="sec-head" data-reveal>
+<span class="sec-num" dir="ltr" aria-hidden="true">3</span>
+<div class="sec-titles"><span class="eyebrow">القسم الثالث</span><h2 id="h-crit">الأثر والتقييم</h2></div>
+<span class="sec-icon" aria-hidden="true"><svg class="ic"><use href="#i-chart"/></svg></span>
+</header>
+<div class="req-grid">
+<article class="req req--wide glass" data-reveal style="--d:0">
+<div class="req-head"><h3>معايير التقييم</h3></div>
+<ul class="crit">
+<li style="--i:0"><span>الابتكار والإبداع</span><span class="bar"><i style="--v:25"></i></span><b>25%</b></li>
+<li style="--i:1"><span>الجدوى وقابلية التوسع</span><span class="bar"><i style="--v:25"></i></span><b>25%</b></li>
+<li style="--i:2"><span>القيمة للعمل</span><span class="bar"><i style="--v:20"></i></span><b>20%</b></li>
+<li style="--i:3"><span>تجربة المستخدم</span><span class="bar"><i style="--v:15"></i></span><b>15%</b></li>
+<li style="--i:4"><span>التصميم التقني</span><span class="bar"><i style="--v:15"></i></span><b>15%</b></li>
+</ul>
+</article>
+<article class="req glass lift" data-reveal style="--d:1">
+<div class="req-head"><h3>الأثر على العمل</h3></div>
+<p>وضّحوا كيف يحقق حلّكم كل مما يلي:</p>
+<ul class="pills"><li>خفض التكاليف التشغيلية</li><li>رفع رضا العملاء</li><li>تعزيز الامتثال والأمن</li><li>زيادة إنتاجية الموظفين</li></ul>
+</article>
+<article class="req glass lift" data-reveal style="--d:2">
+<div class="req-head"><h3>نقاط إضافية</h3></div>
+<p>للفرق التي توظّف:</p>
+<ul class="pills"><li>أتمتة مدعومة بالذكاء الاصطناعي</li><li>التحليلات التنبؤية</li><li>التتبع اللحظي</li><li>تحويل سير العمل رقمياً</li><li>الاستدامة والامتثال</li></ul>
+</article>
+</div>
+</div>
+</section>
+
+  <!-- ====== 04 Time ====== -->
   <section class="section" id="time" aria-labelledby="h-time">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <span class="sec-num" dir="ltr" aria-hidden="true">3</span>
+        <span class="sec-num" dir="ltr" aria-hidden="true">4</span>
         <div class="sec-titles">
-          <span class="eyebrow">القسم الثالث</span>
+          <span class="eyebrow">القسم الرابع</span>
           <h2 id="h-time">الوقت <span class="badge">90 دقيقة</span></h2>
         </div>
         <span class="sec-icon" aria-hidden="true"><svg class="ic"><use href="#i-clock"/></svg></span>
@@ -1029,12 +1067,12 @@ html.sheet-lock{overflow:hidden}
       <div class="tgrid">
         <article class="tcard glass lift" tabindex="0" data-step="0" data-reveal style="--d:0;--s:0;--w:.16667">
           <div class="tnum"><b>15</b><span>دقيقة</span></div>
-          <p>اختيار المسار وتحديد المشكلة.</p>
+          <p>اختيار التحدي وتحليل المشكلة.</p>
           <span class="tmini" aria-hidden="true"><i></i></span>
         </article>
         <article class="tcard glass lift" tabindex="0" data-step="1" data-reveal style="--d:1;--s:.16667;--w:.27778">
           <div class="tnum"><b>25</b><span>دقيقة</span></div>
-          <p>بناء الفكرة وتعبئة بطاقتها.</p>
+          <p>بناء الحل وتحديد البنية التقنية.</p>
           <span class="tmini" aria-hidden="true"><i></i></span>
         </article>
         <article class="tcard glass lift" tabindex="0" data-step="2" data-reveal style="--d:2;--s:.44444;--w:.33333">
@@ -1060,13 +1098,13 @@ html.sheet-lock{overflow:hidden}
     </div>
   </section>
 
-  <!-- ====== 04 Submit ====== -->
+  <!-- ====== 05 Submit ====== -->
   <section class="section" id="submit" aria-labelledby="h-submit">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <span class="sec-num" dir="ltr" aria-hidden="true">4</span>
+        <span class="sec-num" dir="ltr" aria-hidden="true">5</span>
         <div class="sec-titles">
-          <span class="eyebrow">القسم الرابع</span>
+          <span class="eyebrow">القسم الخامس</span>
           <h2 id="h-submit">التسليم</h2>
         </div>
         <span class="sec-icon" aria-hidden="true"><svg class="ic"><use href="#i-ticket"/></svg></span>
@@ -1283,7 +1321,7 @@ const SUBMIT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmcz
         ['اسم الفريق'],
         ['أسماء الأعضاء', 'اسم كل عضو في سطر'],
         ['اسم المشروع'],
-        ['المسار المختار', 'التنبؤ والتحليل · العمليات الأرضية · الاستدامة والوقود · خدمة العملاء · تجربة المسافر'],
+        ['التحدي المختار', 'الأمتعة المفقودة · السرقة من الخزائن العلوية · تحليل الاحتياجات التدريبية'],
         ['العرض التقديمي', '', 'ملف'],
         ['النموذج الأولي', 'حتى 5 ملفات', 'ملف'],
         ['ملاحظات', 'اختياري']
