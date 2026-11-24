@@ -817,7 +817,7 @@ html.sheet-lock{overflow:hidden}
   <!-- ====== Hero ====== -->
   <section class="hero" id="top" aria-label="AI Takes Flight">
     <div class="wrap hero-inner">
-      <div class="lockup" data-reveal style="--d:0" role="group" aria-label="نادي الذكاء الاصطناعي بجامعة جدة بالشراكة مع flyadeal"><img class="lg-uj" src="assets/logo-uj-white.svg" alt="جامعة جدة" width="184" height="194" decoding="async"><span class="lk-bar" aria-hidden="true"></span><div class="club-logo" role="img" aria-label="Artificial Intelligence Club — نادي الذكاء الاصطناعي"></div><span class="lk-x" aria-hidden="true"></span><img class="lg-fad" src="assets/logo-flyadeal-white.svg" alt="flyadeal" width="400" height="136" decoding="async"></div>
+      <div class="lockup" data-reveal style="--d:0" role="group" aria-label="نادي الذكاء الاصطناعي بجامعة جدة بالشراكة مع flyadeal"><div class="club-logo" role="img" aria-label="Artificial Intelligence Club — نادي الذكاء الاصطناعي"></div><span class="lk-x" aria-hidden="true"></span><img class="lg-fad" src="assets/logo-flyadeal-white.svg" alt="flyadeal" width="400" height="136" decoding="async"></div>
       <p class="partners" data-reveal>
         <span>نادي الذكاء الاصطناعي بجامعة جدة</span><span class="sep dot"> · </span><span class="with">بالشراكة مع flyadeal</span>
       </p>
@@ -1148,7 +1148,7 @@ html.sheet-lock{overflow:hidden}
 
 <footer class="foot">
   <div class="wrap">
-    <div class="lockup lockup--sm" role="group" aria-label="نادي الذكاء الاصطناعي بجامعة جدة بالشراكة مع flyadeal"><img class="lg-uj" src="assets/logo-uj-white.svg" alt="جامعة جدة" width="184" height="194" decoding="async"><span class="lk-bar" aria-hidden="true"></span><div class="club-logo" role="img" aria-label="Artificial Intelligence Club — نادي الذكاء الاصطناعي"></div><span class="lk-x" aria-hidden="true"></span><img class="lg-fad" src="assets/logo-flyadeal-white.svg" alt="flyadeal" width="400" height="136" decoding="async"></div>
+    <div class="lockup lockup--sm" role="group" aria-label="نادي الذكاء الاصطناعي بجامعة جدة بالشراكة مع flyadeal"><div class="club-logo" role="img" aria-label="Artificial Intelligence Club — نادي الذكاء الاصطناعي"></div><span class="lk-x" aria-hidden="true"></span><img class="lg-fad" src="assets/logo-flyadeal-white.svg" alt="flyadeal" width="400" height="136" decoding="async"></div>
     <span class="foot-brand" dir="ltr"><b>AI</b> Takes Flight</span>
     <span class="foot-partners">نادي الذكاء الاصطناعي بجامعة جدة · بالشراكة مع flyadeal</span>
   </div>
@@ -1354,7 +1354,6 @@ const SUBMIT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmcz
         const S = 2, W = 630, H = 240;
         const load = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
         const svgImg = async (u, w, h) => { const t = await (await fetch(u)).text(); return load('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(t.replace('<svg ', '<svg width="' + w + '" height="' + h + '" '))); };
-        const uj = await svgImg('assets/logo-uj-white.svg', 70 * S, 74 * S);
         const fad = await svgImg('assets/logo-flyadeal-white.svg', 118 * S, 40 * S);
         const mUrl = (getComputedStyle($('.club-logo')).getPropertyValue('--m').match(/url\(["']?([^"')]+)["']?\)/) || [])[1];
         const mk = await load(mUrl);
@@ -1365,7 +1364,7 @@ const SUBMIT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmcz
         cx.globalCompositeOperation = 'source-in'; cx.fillStyle = '#fff'; cx.fillRect(0, 0, club.width, club.height);
         const cv = document.createElement('canvas'); cv.width = W * S; cv.height = H * S;
         const g = cv.getContext('2d');
-        [[uj, 105, 60], [club, 315, 60], [fad, 525, 60], [fad, 105, 180], [uj, 315, 180], [club, 525, 180]].forEach(a => g.drawImage(a[0], a[1] * S - a[0].width / 2, a[2] * S - a[0].height / 2));
+        [[club, 158, 60], [fad, 473, 60], [fad, 158, 180], [club, 473, 180]].forEach(a => g.drawImage(a[0], a[1] * S - a[0].width / 2, a[2] * S - a[0].height / 2));
         wall.style.backgroundImage = 'url(' + cv.toDataURL('image/png') + ')';
       } catch (err) { wall.dataset.ok = ''; }
     };
