@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_SA">
 <meta property="og:title" content="AI Takes Flight — هاكاثون الذكاء الاصطناعي في الطيران">
-<meta property="og:description" content="نادي الذكاء الاصطناعي بجامعة جدة · بالشراكة مع flyadeal. اختر تحدياً من تحديات flyadeal، وابتكر حلاً عملياً خلال 90 دقيقة.">
+<meta property="og:description" content="نادي الذكاء الاصطناعي بجامعة جدة · بالشراكة مع flyadeal. اختر تحدياً من تحديات flyadeal، وابتكر حلاً عملياً خلال 60 دقيقة.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AI Takes Flight">
 <meta name="twitter:description" content="هاكاثون الذكاء الاصطناعي في الطيران — جامعة جدة بالشراكة مع flyadeal">
@@ -347,6 +347,8 @@ body.has-pointer .cursor-glow{opacity:1}
 .tb{margin:0 16px 18px;padding-top:14px;border-top:1px dashed rgba(205,220,41,.22);opacity:0;transform:translateY(-6px);transition:opacity .4s ease .1s,transform .5s var(--ease) .1s}
 .track.is-open .tb{opacity:1;transform:none}
 .tb p{margin:0 0 8px;font-size:16px;line-height:1.9;color:var(--white)}
+.tb .limits{margin:14px 0 0;padding-top:12px;border-top:1px dashed rgba(205,220,41,.25);font-size:14.5px;line-height:1.8;color:var(--soft,#d9d3ea)}
+.tb .limits b{font-family:var(--f-head);font-weight:700;color:var(--lime)}
 .tb h4{margin:16px 0 6px;font-family:var(--f-head);font-weight:700;font-size:15px;line-height:1.6;color:var(--lime)}
 .tb ul.l{margin:0;padding-inline-start:20px;font-size:15.5px;line-height:1.9;color:var(--white)}
 .tb ul.l li::marker{color:var(--cyan)}
@@ -854,7 +856,7 @@ html.sheet-lock{overflow:hidden}
 
         <div>
           <div class="tracks-head" data-reveal>
-            <h3>تحديات الهاكاثون</h3>
+            <h3>تحديات flyadeal</h3>
             <span class="hint">اضغط على التحدي لعرض تفاصيله</span>
           </div>
           <ul class="tracks">
@@ -867,6 +869,7 @@ html.sheet-lock{overflow:hidden}
 <ul class="l"><li>كيف نتعرّف على الحقيبة إذا كانت بطاقتها تالفة أو مفقودة؟</li><li>ما التقنيات التي تحسّن تتبّع الأمتعة؟</li><li>كيف نتحقق من أن الأمتعة أُتلفت وفق السياسة؟</li><li>كيف نُسرّع معالجة مطالبات المسافرين؟</li></ul>
 <h4>المخرجات المتوقعة</h4>
 <ul class="pills"><li>تقليل حالات الأمتعة مجهولة المالك</li><li>رفع معدل استرداد الأمتعة</li><li>عملية تخلص قابلة للتحقق</li><li>تحسين تجربة العميل</li></ul>
+<p class="limits"><b>الحدود:</b> بطاقة تالفة أو مفقودة · جهات متعددة · مدة الاحتفاظ · محتوى حساس · إثبات الإتلاف</p>
 </div></div></div>
 </li>
 <li class="track glass lift" data-reveal style="--d:1">
@@ -878,19 +881,19 @@ html.sheet-lock{overflow:hidden}
 <ul class="l"><li>كيف نؤمّن الأمتعة في الخزائن العلوية؟</li><li>كيف نشجّع الركاب على وضع حقائبهم قرب مقاعدهم المخصصة؟</li><li>كيف نكشف الوصول المشبوه إلى الحقائب؟</li><li>كيف نحافظ على الخصوصية مع تحسين الأمن؟</li></ul>
 <h4>المخرجات المتوقعة</h4>
 <ul class="pills"><li>تقليل حوادث السرقة</li><li>تحسين إدارة الخزائن العلوية</li><li>دعم مراقبة الطاقم</li><li>توازن بين الأمن والخصوصية</li></ul>
+<p class="limits"><b>الحدود:</b> حقيبة بعيدة · مراقبة محدودة · اكتشاف متأخر · موافقة الأجهزة · خصوصية الركاب</p>
 </div></div></div>
 </li>
 <li class="track glass lift" data-reveal style="--d:2">
-<button class="track-head" type="button" aria-expanded="false" aria-controls="tb-3" id="th-3"><span class="track-num">3</span><span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-chart"/></svg></span><span class="track-name">رقمنة عملية تحليل الاحتياجات التدريبية<small>Training Needs Analysis (TNA) Digitalization</small></span><span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button>
+<button class="track-head" type="button" aria-expanded="false" aria-controls="tb-3" id="th-3"><span class="track-num">3</span><span class="track-icon" aria-hidden="true"><svg class="ic"><use href="#i-chart"/></svg></span><span class="track-name">إدارة البيانات المشتركة بين الأقسام<small>Cross-Department Shared Data Management</small></span><span class="track-plus" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button>
 <div class="track-body" id="tb-3" role="region" aria-labelledby="th-3"><div><div class="tb">
 <h4>المشكلة</h4>
-<p>تُجمع الاحتياجات التدريبية السنوية في ملفات Excel يعدّلها عدة مدراء، فتتغير البيانات بالخطأ وتتلف المعادلات، ويحتاج تجميعها جهداً يدوياً كبيراً.</p>
+<p>تتبادل الأقسام بياناتها، مثل خطط التدريب وجداول المناوبات وتقارير التشغيل، في ملفات إكسل مشتركة يعدّل عليها أكثر من شخص، فتُكتب البيانات فوق بعضها، وتتعطل المعادلات والتنسيقات، ويستغرق تجميعها يدوياً وقتاً وينتج بيانات ضعيفة.</p>
 <h4>الأسئلة المحورية</h4>
-<ul class="l"><li>كيف نجمع طلبات التدريب دون السماح بتعديلات غير مصرّح بها؟</li><li>كيف يرفع المدراء بياناتهم عبر مسار منظّم؟</li><li>كيف نؤتمت الموافقات وسير العمل؟</li><li>كيف تحصل الإدارة على تقارير ولوحات متابعة لحظية؟</li></ul>
+<ul class="l"><li>كيف نجمع بيانات الأقسام دون أن تُكتب التعديلات فوق بعضها؟</li><li>كيف نعرف من عدّل، وماذا عدّل، ومتى؟</li><li>كيف ترفع الأقسام بياناتها عبر مسار منظّم؟</li><li>كيف نحمي سرية البيانات ونلتزم بالأنظمة؟</li><li>كيف تحصل الإدارة على تقارير ولوحات متابعة لحظية؟</li></ul>
 <h4>المخرجات المتوقعة</h4>
-<ul class="pills"><li>إنهاء مشكلة نسخ الجداول</li><li>حماية سلامة البيانات</li><li>تبسيط رفع بيانات المدراء</li><li>تقارير وقرارات أفضل</li></ul>
-<h4>مطلوب إضافي لهذا التحدي</h4>
-<ul class="l"><li>أداة تحليل تساعد الإدارة على فهم بيانات التدريب واتخاذ القرار، مثل معرفة أهلية الموظفين للدورات.</li><li>تقرير يُنشأ تلقائياً من البيانات التي أدخلها المدراء.</li></ul>
+<ul class="pills"><li>إنهاء تضارب التعديلات وتعدد النسخ</li><li>حماية سلامة البيانات وسريتها</li><li>تبسيط رفع البيانات من الأقسام</li><li>تقارير وقرارات أسرع وأدق</li></ul>
+<p class="limits"><b>الحدود:</b> تعديلات غير مسجّلة · أخطاء صامتة · تجميع يدوي · أنظمة منفصلة · سرية البيانات · الاعتياد على إكسل</p>
 </div></div></div>
 </li>
 </ul>
@@ -935,7 +938,7 @@ html.sheet-lock{overflow:hidden}
             </div>
             <h3>البنية التقنية <bdi dir="ltr" style="display:block;margin-top:4px;font-size:.72em;font-weight:600;opacity:.82;text-align:right">(Technology Architecture)</bdi></h3>
           </div>
-          <p>رسم يوضّح مكونات الحل والبيانات وكيف ترتبط ببعضها: المدخلات، ثم المعالجة، ثم المخرجات، ثم المستخدم. باستخدام أي أداة مناسبة، ويُرفع كملف (صورة أو PDF) عند التسليم.</p>
+          <p>رسم يوضّح مكونات الحل والبيانات وكيف ترتبط ببعضها: المدخلات، ثم المعالجة، ثم المخرجات، ثم المستخدم. باستخدام أي أداة مناسبة، ويُرفع كملف عند التسليم.</p>
         </article>
 
         <article class="req req--deck glass lift" data-reveal style="--d:2">
@@ -946,7 +949,7 @@ html.sheet-lock{overflow:hidden}
             </div>
             <h3>العرض التقديمي</h3>
           </div>
-          <p>عرض تقديمي من 5 شرائح يلخّص مفهوم الحل والبنية التقنية والأثر على الأعمال، ويُسلَّم كملف عبر نموذج التسليم عند الانتهاء.</p>
+          <p>عرض تقديمي يلخّص مفهوم الحل والبنية التقنية والأثر على الأعمال، ويُسلَّم كملف عبر نموذج التسليم عند الانتهاء.</p>
           <ol class="slides" aria-hidden="true">
             <li style="--i:0">1</li><li style="--i:1">2</li><li style="--i:2">3</li><li style="--i:3">4</li><li style="--i:4">5</li>
           </ol>
@@ -995,7 +998,7 @@ html.sheet-lock{overflow:hidden}
         <span class="sec-num" dir="ltr" aria-hidden="true">4</span>
         <div class="sec-titles">
           <span class="eyebrow">القسم الرابع</span>
-          <h2 id="h-time">الوقت <span class="badge">90 دقيقة</span></h2>
+          <h2 id="h-time">الوقت <span class="badge">60 دقيقة</span></h2>
         </div>
         <span class="sec-icon" aria-hidden="true"><svg class="ic"><use href="#i-clock"/></svg></span>
       </header>
@@ -1004,47 +1007,47 @@ html.sheet-lock{overflow:hidden}
         <div class="tbar">
           <span class="tbar-plane"><svg viewBox="0 0 24 24"><use href="#i-plane"/></svg></span>
           <div class="tbar-track">
-            <div class="tseg" data-step="0" style="--m:15;--s:0;--w:.16667"><span>15</span></div>
-            <div class="tseg" data-step="1" style="--m:25;--s:.16667;--w:.27778"><span>25</span></div>
-            <div class="tseg" data-step="2" style="--m:30;--s:.44444;--w:.33333"><span>30</span></div>
-            <div class="tseg" data-step="3" style="--m:20;--s:.77778;--w:.22222"><span>20</span></div>
+            <div class="tseg" data-step="0" style="--m:10;--s:0;--w:.16667"><span>10</span></div>
+            <div class="tseg" data-step="1" style="--m:15;--s:.16667;--w:.25"><span>15</span></div>
+            <div class="tseg" data-step="2" style="--m:20;--s:.41667;--w:.33333"><span>20</span></div>
+            <div class="tseg" data-step="3" style="--m:15;--s:.75;--w:.25"><span>15</span></div>
           </div>
           <div class="tticks">
             <span style="--at:0">0</span>
-            <span style="--at:.16667">15</span>
-            <span style="--at:.44444">40</span>
-            <span style="--at:.77778">70</span>
-            <span style="--at:1">90</span>
+            <span style="--at:.16667">10</span>
+            <span style="--at:.41667">25</span>
+            <span style="--at:.75">45</span>
+            <span style="--at:1">60</span>
           </div>
         </div>
       </div>
 
       <div class="tgrid">
         <article class="tcard glass lift" tabindex="0" data-step="0" data-reveal style="--d:0;--s:0;--w:.16667">
-          <div class="tnum"><b>15</b><span>دقيقة</span></div>
+          <div class="tnum"><b>10</b><span>دقيقة</span></div>
           <p>اختيار التحدي وتحليل المشكلة.</p>
           <span class="tmini" aria-hidden="true"><i></i></span>
         </article>
-        <article class="tcard glass lift" tabindex="0" data-step="1" data-reveal style="--d:1;--s:.16667;--w:.27778">
-          <div class="tnum"><b>25</b><span>دقيقة</span></div>
+        <article class="tcard glass lift" tabindex="0" data-step="1" data-reveal style="--d:1;--s:.16667;--w:.25">
+          <div class="tnum"><b>15</b><span>دقيقة</span></div>
           <p>بناء فكرة الحل ورحلة المستخدم.</p>
           <span class="tmini" aria-hidden="true"><i></i></span>
         </article>
-        <article class="tcard glass lift" tabindex="0" data-step="2" data-reveal style="--d:2;--s:.44444;--w:.33333">
-          <div class="tnum"><b>30</b><span>دقيقة</span></div>
+        <article class="tcard glass lift" tabindex="0" data-step="2" data-reveal style="--d:2;--s:.41667;--w:.33333">
+          <div class="tnum"><b>20</b><span>دقيقة</span></div>
           <p>إعداد البنية التقنية للحل.</p>
           <span class="tmini" aria-hidden="true"><i></i></span>
         </article>
-        <article class="tcard glass lift" tabindex="0" data-step="3" data-reveal style="--d:3;--s:.77778;--w:.22222">
-          <div class="tnum"><b>20</b><span>دقيقة</span></div>
+        <article class="tcard glass lift" tabindex="0" data-step="3" data-reveal style="--d:3;--s:.75;--w:.25">
+          <div class="tnum"><b>15</b><span>دقيقة</span></div>
           <p>إعداد العرض التقديمي.</p>
           <span class="tmini" aria-hidden="true"><i></i></span>
         </article>
       </div>
 
       <div class="timer glass" data-reveal id="timer">
-        <div class="timer-label"><b>عدّاد الهاكاثون</b><span>90 دقيقة من لحظة الانطلاق</span></div>
-        <div class="timer-digits" role="timer" aria-live="off" id="timer-digits">90:00</div>
+        <div class="timer-label"><b>عدّاد الهاكاثون</b><span>60 دقيقة من لحظة الانطلاق</span></div>
+        <div class="timer-digits" role="timer" aria-live="off" id="timer-digits">60:00</div>
         <div class="timer-btns">
           <button class="tbtn primary" type="button" id="timer-toggle">ابدأ</button>
           <button class="tbtn" type="button" id="timer-reset">إعادة</button>
@@ -1086,7 +1089,7 @@ html.sheet-lock{overflow:hidden}
             <span class="perf" aria-hidden="true"></span>
             <div class="stub-time">
               <span class="stub-label" dir="ltr" aria-hidden="true">DURATION</span>
-              <span class="stub-num"><b>90</b><span>دقيقة</span></span>
+              <span class="stub-num"><b>60</b><span>دقيقة</span></span>
             </div>
             <span class="barcode" aria-hidden="true"></span>
           </div>
@@ -1095,7 +1098,7 @@ html.sheet-lock{overflow:hidden}
 
       <div class="alert" role="note" data-reveal style="--d:1">
         <span class="alert-icon" aria-hidden="true"><svg class="ic"><use href="#i-alarm"/></svg></span>
-        <p><span class="sr-only">⏰ </span><strong>آخر موعد للتسليم:</strong> نهاية الـ90 دقيقة، وتبدأ العروض بعدها مباشرة.</p>
+        <p><span class="sr-only">⏰ </span><strong>آخر موعد للتسليم:</strong> نهاية الـ60 دقيقة، وتبدأ العروض بعدها مباشرة.</p>
       </div>
     </div>
   </section>
@@ -1269,7 +1272,7 @@ const SUBMIT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmcz
   const GF = {
     submit: {
       title: 'تسليم مشروع فريقك',
-      lead: 'يُسلَّم المشروع مرة واحدة لكل فريق قبل انتهاء مدة الـ90 دقيقة. جهّز ملف العرض التقديمي والبنية التقنية <bdi dir="ltr">(Technology Architecture)</bdi>، ثم افتح نموذج التسليم.',
+      lead: 'يُسلَّم المشروع مرة واحدة لكل فريق قبل انتهاء مدة الـ60 دقيقة. جهّز ملف العرض التقديمي والبنية التقنية <bdi dir="ltr">(Technology Architecture)</bdi>، ثم افتح نموذج التسليم.',
       send: 'فتح نموذج التسليم',
       note: 'رفع الملفات يتطلب تسجيل الدخول بحساب Google، ويُفتح النموذج في تبويب جديد.',
       items: [
@@ -1359,10 +1362,10 @@ const SUBMIT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc8kh0IsJL8d35uNmcz
     if (hm) openSheet(hm[1], true);
   }
 
-  /* ── Countdown (90 min) ── */
+  /* ── Countdown (60 min) ── */
   const tEl = $('#timer-digits'), tBox = $('#timer'), tBtn = $('#timer-toggle'), tReset = $('#timer-reset');
   if (tEl && tBtn && tReset) {
-    const TOTAL = 90 * 60;
+    const TOTAL = 60 * 60;
     let remain = TOTAL, endAt = 0, tick = 0;
     const fmt = n => Math.floor(n / 60) + ':' + String(n % 60).padStart(2, '0');
     const draw = () => { tEl.textContent = fmt(remain); tBox.classList.toggle('is-end', remain === 0); };
